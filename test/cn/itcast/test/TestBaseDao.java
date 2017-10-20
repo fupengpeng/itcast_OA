@@ -10,9 +10,13 @@ import cn.itcast.oa.domain.Book;
 import cn.itcast.oa.service.IBookService;
 
 /**
- * 测试basedao
- * @author zhaoqx
- *
+ * 
+ * @Title: TestBaseDao
+ * @Description: 测试basedao
+ * @Company: 济宁九点连线信息技术有限公司
+ * @ProjectName: itcast_OA
+ * @author fupengpeng
+ * @date 2017年10月20日 上午9:03:48
  */
 public class TestBaseDao {
 	
@@ -98,7 +102,7 @@ public class TestBaseDao {
 		IBookService bookService = (IBookService) ctx.getBean("bookServiceImpl");
 		
 		Book book = new Book();
-		book.setName("c");
+		book.setName("Basic");
 		
 		bookService.save(book);
 	}

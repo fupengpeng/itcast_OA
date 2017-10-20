@@ -10,7 +10,7 @@ import java.util.Set;
  * @Company: 济宁九点连线信息技术有限公司
  * @ProjectName: itcast_OA
  * @author fupengpeng
- * @date 2017年9月25日 上午11:17:04
+ * @date 2017年10月20日 下午5:00:57
  */
 public class Role {
 	private Long id;

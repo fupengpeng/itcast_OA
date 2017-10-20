@@ -12,6 +12,15 @@ import cn.itcast.oa.domain.Book;
 import cn.itcast.oa.service.IBookService;
 
 
+/**
+ * 
+ * @Title: BookServiceImpl
+ * @Description: IBookService实现
+ * @Company: 济宁九点连线信息技术有限公司
+ * @ProjectName: itcast_OA
+ * @author fupengpeng
+ * @date 2017年10月20日 上午9:00:25
+ */
 @Service
 @Transactional
 public class BookServiceImpl implements IBookService {

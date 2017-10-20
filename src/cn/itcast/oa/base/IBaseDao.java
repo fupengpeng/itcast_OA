@@ -16,7 +16,7 @@ public interface IBaseDao<T> {
 	
 	/**
 	 * 
-	 * Description: 给一个描述
+	 * Description: 保存
 	 * @param entity
 	 */
 	public void save(T entity);
@@ -28,7 +28,7 @@ public interface IBaseDao<T> {
 	public void delete(Long id);
 	/**
 	 * 
-	 * Description: 根据id修改
+	 * Description: 修改
 	 * @param entity
 	 */
 	public void update(T entity);
