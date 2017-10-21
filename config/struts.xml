@@ -26,11 +26,19 @@
     	        <param name="namespace">/</param>
     	    </result>
     	    <!-- 修改角色数据前，跳转的修改页面 -->
-    	    <result name="editUI">/WEB-INF/jsp/role/edit.jsp</result>
-    	    <!--  -->
-    	    <result name="addUI">/WEB-INF/jsp/role/add.jsp</result>
+    	    <result name="editUI">/WEB-INF/jsp/role/save.jsp</result>
+    	    <!-- 添加岗位 -->
+    	    <result name="addUI">/WEB-INF/jsp/role/save.jsp</result>
     	</action>
-    	
-    	
+    	<!-- 部门管理Action -->
+    	<action name="department_*" class="departmentAction" method="{1}">
+    	    <!-- 部门列表 -->
+    	    <result name="list">/WEB-INF/jsp/department/list.jsp</result>
+    	    <!-- 删除后的列表展示 -->
+    	    <result name="toList" type="redirectAction">
+    	        <param name="actionName">department_list</param>
+    	        <param name="namespace">/</param>
+    	    </result>
+    	</action>
     </package>
 </struts>

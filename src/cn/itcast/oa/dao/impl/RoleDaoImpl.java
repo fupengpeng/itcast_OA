@@ -11,7 +11,7 @@ import cn.itcast.oa.domain.Role;
 /**
  * 
  * @Title: RoleDaoImpl
- * @Description: 岗位管理
+ * @Description: 岗位管理Dao接口实现
  * @Company: 济宁九点连线信息技术有限公司
  * @ProjectName: itcast_OA
  * @author fupengpeng
