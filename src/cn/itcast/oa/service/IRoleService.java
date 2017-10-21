@@ -1,5 +1,9 @@
 package cn.itcast.oa.service;
 
+import java.util.List;
+
+import cn.itcast.oa.domain.Role;
+
 
 /**
  * 
@@ -11,5 +15,16 @@ package cn.itcast.oa.service;
  * @date 2017年9月25日 下午1:50:10
  */
 public interface IRoleService {
+
+	public List<Role> findAll();
+
+	public void delete(Role model);
+
+	public Role getById(Long id);
+
+	public void update(Role role);
+
+	public void save(Role model);
+
 
 }

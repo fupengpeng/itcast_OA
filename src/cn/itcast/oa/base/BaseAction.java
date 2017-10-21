@@ -6,9 +6,12 @@ import java.lang.reflect.Type;
 import javax.annotation.Resource;
 
 import cn.itcast.oa.service.IBookService;
+import cn.itcast.oa.service.IRoleService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 
@@ -23,9 +26,11 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
 	@Resource
 	protected IBookService bookService;
+	@Resource
+	protected IRoleService roleService;
 	
 	protected T model;
-
+	//在构造方法中获取model类型
 	public BaseAction()  {
 		// 获得实体类型
 		// 应用此类时，子类(声明时有明确泛型)继承此类。通过子类对象调用getClass()方法获取当前类，再调用getGenericSuperclass()获取其实际带泛型的父类即此类(有明确泛型的此类，泛型来源于子类)
@@ -49,6 +54,16 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	public T getModel() {
 		// TODO Auto-generated method stub
 		return model;
+	}
+	/**
+	 * 
+	 * @Description: 获取值栈
+	 * @author fupengpeng
+	 * @@return
+	 * @date 2017年10月21日 上午9:23:07
+	 */
+	protected ValueStack getValueStack() {
+		return ActionContext.getContext().getValueStack();
 	}
 
 }
