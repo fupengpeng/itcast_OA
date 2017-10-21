@@ -39,6 +39,8 @@
     	        <param name="actionName">department_list</param>
     	        <param name="namespace">/</param>
     	    </result>
+    	    <!-- 添加部门 -->
+    	    <result name="addUI">/WEB-INF/jsp/department/save.jsp</result>
     	</action>
     </package>
 </struts>

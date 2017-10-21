@@ -38,5 +38,16 @@ public class DepartmentAction extends BaseAction<Department> {
 		departmentService.delete(model);
 		return "toList";
 	}
+	
+	/**
+	 * 跳转到部门添加页面
+	 */
+	public String addUI(){
+		//准备部门列表数据，用于select列表展示
+		List<Department> list = departmentService.findAll();
+		getValueStack().set("departmentList", list);    //查询出来是列表，就是用set方法，查询出来是对象，则使用push方法
+		
+		return "addUI";
+	}
 
 }
