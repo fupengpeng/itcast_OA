@@ -20,6 +20,10 @@ public interface IDepartmentService {
 	public List<Department> findAll();
 
 	public void delete(Department model);
+
+	public Department getById(Long parentId);
+
+	public void save(Department model);
 	
 
 
