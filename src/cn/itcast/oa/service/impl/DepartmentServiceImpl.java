@@ -47,6 +47,11 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		// TODO Auto-generated method stub
 		departmentDao.save(model);
 	}
+
+	public void update(Department model) {
+		// TODO Auto-generated method stub
+		departmentDao.update(model);
+	}
 	
 	
 

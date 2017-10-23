@@ -24,6 +24,8 @@ public interface IDepartmentService {
 	public Department getById(Long parentId);
 
 	public void save(Department model);
+
+	public void update(Department model);
 	
 
 
