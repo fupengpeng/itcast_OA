@@ -40,12 +40,15 @@
 			<tbody id="TableData" class="dataContainer" datakey="departmentList">
 				<s:iterator value="list">
 					<tr class="TableDetail1 template">
-						<td><a href="_list_level2.html">${name}</a>&nbsp;</td>
+						<td>
+						     <s:a action="department_list?parentId=%{ id }" namespace="/">${name}</s:a>&nbsp;
+						</td>
 						<td>${parent.name}&nbsp;</td>
 						<td>${description}&nbsp;</td>
-						<td><s:a
-							onclick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" action="department_delete?id=%{id}" namespace="/">删除</s:a>
-							<s:a action="department_editUI?id=%{id}" namespace="/">修改</s:a></td>
+						<td>
+						    <s:a onclick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" action="department_delete?id=%{id}" namespace="/">删除</s:a> 
+						    <s:a action="department_editUI?id=%{ id }" namespace="/">修改</s:a>
+						</td>
 					</tr>
 				</s:iterator>
 
@@ -55,8 +58,17 @@
 		<!-- 其他功能超链接 -->
 		<div id="TableTail">
 			<div id="TableTail_inside">
-				<s:a action="department_addUI" namespace="/"><img
-					src="${pageContext.request.contextPath}/style/images/createNew.png" /></s:a>
+				<s:a action="department_addUI?parentId=%{ id }" namespace="/">
+					<img
+						src="${pageContext.request.contextPath}/style/images/createNew.png" />
+				</s:a>
+				<s:if test="parentId != null">
+				    <s:a action="department_list?parentId=%{ dept.parent.parent.id }" namespace="/">
+				        <img src="${pageContext.request.contextPath}/style/blue/images/button/ReturnToPrevLevel.png">
+				     
+				    </s:a>
+				
+				</s:if>
 			</div>
 		</div>
 	</div>

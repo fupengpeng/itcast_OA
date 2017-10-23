@@ -52,6 +52,16 @@ public class DepartmentServiceImpl implements IDepartmentService {
 		// TODO Auto-generated method stub
 		departmentDao.update(model);
 	}
+
+	public List<Department> findTopList() {
+		// TODO Auto-generated method stub
+		return departmentDao.findTopList();
+	}
+
+	public List<Department> findChildren(Long parentId) {
+		// TODO Auto-generated method stub
+		return departmentDao.findChildren(parentId);
+	}
 	
 	
 

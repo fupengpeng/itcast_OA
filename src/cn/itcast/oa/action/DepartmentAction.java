@@ -36,8 +36,21 @@ public class DepartmentAction extends BaseAction<Department> {
 	 * 查询部门列表
 	 */
 	public String list(){
-		List<Department> list = departmentService.findAll();
-		getValueStack().set("list", list);    //查询出来是列表，就是用set方法，查询出来是对象，则使用push方法
+		System.out.println("parentId = " + parentId);
+		List<Department> list = null;
+		if (parentId == null) {
+			//查询顶级部门列表
+			list = departmentService.findTopList();
+			
+		}else {
+			//查询子部门列表
+			list = departmentService.findChildren(parentId);
+			Department department = departmentService.getById(parentId);
+			getValueStack().set("department", department);
+			
+		}
+		System.out.println("list = " + list );
+		getValueStack().set("list", list);
 		return "list";
 	} 
 	

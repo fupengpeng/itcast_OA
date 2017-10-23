@@ -26,6 +26,10 @@ public interface IDepartmentService {
 	public void save(Department model);
 
 	public void update(Department model);
+
+	public List<Department> findTopList();
+
+	public List<Department> findChildren(Long parentId);
 	
 
 
