@@ -45,6 +45,7 @@ public class DepartmentAction extends BaseAction<Department> {
 		}else {
 			//查询子部门列表
 			list = departmentService.findChildren(parentId);
+			
 			Department department = departmentService.getById(parentId);
 			getValueStack().set("department", department);
 			
