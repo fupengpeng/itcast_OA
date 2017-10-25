@@ -43,8 +43,8 @@
 						<td>
 						     <s:a action="department_list?parentId=%{ id }" namespace="/">${name}</s:a>&nbsp;
 						</td>
-						<%-- <td>${parent.name}&nbsp;</td> --%>
-						<td>父部门名称&nbsp;</td>
+						<td>${parent}&nbsp;</td>
+						<td>${parent.name}&nbsp;</td>
 						<td>${description}&nbsp;</td>
 						<td>
 						    <s:a onclick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" action="department_delete?id=%{id}" namespace="/">删除</s:a> 
@@ -60,7 +60,7 @@
 		<div id="TableTail">
 			<div id="TableTail_inside">
 			    <!-- 新建按钮 -->
-				<s:a action="department_addUI?parentId=%{ id }" namespace="/">
+				<s:a action="department_addUI?parentId=%{ parentId }" namespace="/">
 					<img
 						src="${pageContext.request.contextPath}/style/images/createNew.png" />
 				</s:a>

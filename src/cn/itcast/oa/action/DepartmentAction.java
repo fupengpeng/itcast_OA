@@ -50,6 +50,7 @@ public class DepartmentAction extends BaseAction<Department> {
 			getValueStack().set("department", department);
 			
 		}
+		System.out.println("parentId-- = " + parentId);
 		System.out.println("list = " + list );
 		getValueStack().set("list", list);
 		return "list";
