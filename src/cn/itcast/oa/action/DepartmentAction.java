@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Department;
+import cn.itcast.oa.utils.DepartmentUtils;
 
 
 /**
@@ -69,8 +70,11 @@ public class DepartmentAction extends BaseAction<Department> {
 	 */
 	public String addUI(){
 		//准备部门列表数据，用于select列表展示
-		List<Department> list = departmentService.findAll();
-		getValueStack().set("departmentList", list);    //查询出来是列表，就是用set方法，查询出来是对象，则使用push方法
+//		List<Department> list = departmentService.findAll();
+		List<Department> topList = departmentService.findTopList(); //所有顶级部门
+		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
+		
+		getValueStack().set("departmentList", treeList);    //查询出来是列表，就是用set方法，查询出来是对象，则使用push方法
 		
 		return "addUI";
 	}
@@ -86,6 +90,8 @@ public class DepartmentAction extends BaseAction<Department> {
 		}else {
 			model.setParent(null);			
 		}
+		System.out.println("model--name = " + model.getName());
+		System.out.println("model--description = " + model.getDescription());
 		departmentService.save(model);
 		return "toList";
 	}
@@ -94,9 +100,14 @@ public class DepartmentAction extends BaseAction<Department> {
 	 * 跳转到修改页面
 	 */
 	public String editUI(){
-		List<Department> list = departmentService.findAll();  //修改时所要显示的部门列表信息获取
+//		List<Department> list = departmentService.findAll();  //修改时所要显示的部门列表信息获取
+		
 		Department department = departmentService.getById(model.getId());  //要修改的用户数据获取
-		getValueStack().set("departmentList", list);
+		
+		List<Department> topList = departmentService.findTopList(); //所有顶级部门
+		List<Department> treeList = DepartmentUtils.getTreeList(topList , department.getId());
+		
+		getValueStack().set("departmentList", treeList);
 		getValueStack().push(department);
 		if (department.getParent() != null) {
 			parentId = department.getParent().getId();  //设置parentId的值，用于修改部门数据时，默认展示的上级部门名称

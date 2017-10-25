@@ -44,7 +44,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	}
 
 	public void save(Department model) {
-		// TODO Auto-generated method stub
+		System.out.println("name = " + model.getName());
 		departmentDao.save(model);
 	}
 
