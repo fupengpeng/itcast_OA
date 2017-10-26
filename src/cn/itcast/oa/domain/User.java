@@ -17,7 +17,7 @@ public class User {
 	private Long id;
 	private String loginName;
 	private String name;
-	private int gencler;
+	private int gender;
 	private String phone;
 	private String email;
 	private String description;
@@ -42,11 +42,11 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getGencler() {
-		return gencler;
+	public int getGender() {
+		return gender;
 	}
-	public void setGencler(int gencler) {
-		this.gencler = gencler;
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 	public String getPhone() {
 		return phone;

@@ -9,7 +9,7 @@
         </id>
         <property name="loginName" length="32"></property>
         <property name="name" length="32"></property>
-        <property name="gencler" length="32"></property>
+        <property name="gender" length="32"></property>
         <property name="phone" length="32"></property>
         <property name="email" length="32"></property>
         <property name="description" length="128"></property>

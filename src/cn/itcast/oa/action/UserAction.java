@@ -1,5 +1,7 @@
 package cn.itcast.oa.action;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -28,7 +30,9 @@ public class UserAction extends BaseAction<User> {
 	 * @return 
 	 */
 	public String list() {
-		
+		List<User> list = userService.findAll();
+		getValueStack().set("userList", list);
+		System.out.println("list = " + list);
 		return "list";
 	}
 	/**
@@ -39,7 +43,7 @@ public class UserAction extends BaseAction<User> {
 	 * @return 
 	 */
 	public String delete(){
-		
+		userService.delete(model);
 		return "toList";
 	}
 	/**

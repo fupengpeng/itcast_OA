@@ -19,8 +19,7 @@ import cn.itcast.oa.domain.User;
  */
 @Repository
 @SuppressWarnings("unchecked")
-public class UserDaoImpl extends BaseDaoImpl<User> implements
-		IUserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 
 
 }

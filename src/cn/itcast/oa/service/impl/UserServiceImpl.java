@@ -1,12 +1,15 @@
 package cn.itcast.oa.service.impl;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.oa.dao.IUserDao;
+import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IUserService;
 
 
@@ -25,6 +28,14 @@ public class UserServiceImpl implements IUserService {
 	
 	@Resource
 	private IUserDao userDao;
+
+	public List<User> findAll() {
+		return userDao.findAll();
+	}
+
+	public void delete(User model) {
+		userDao.delete(model.getId());
+	}
 
 
 }

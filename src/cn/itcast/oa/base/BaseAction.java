@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import cn.itcast.oa.service.IBookService;
 import cn.itcast.oa.service.IDepartmentService;
 import cn.itcast.oa.service.IRoleService;
+import cn.itcast.oa.service.IUserService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -31,6 +32,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected IRoleService roleService;
 	@Resource
 	protected IDepartmentService departmentService;
+	@Resource
+	protected IUserService userService;
 	
 	protected T model;
 	//在构造方法中获取model类型
