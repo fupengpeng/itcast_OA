@@ -37,5 +37,14 @@ public class UserServiceImpl implements IUserService {
 		userDao.delete(model.getId());
 	}
 
+	public void save(User model) {
+		userDao.save(model);
+		
+	}
+
+	public User getById(Long id) {
+		return userDao.getById(id);
+	}
+
 
 }

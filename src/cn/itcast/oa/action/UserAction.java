@@ -1,12 +1,16 @@
 package cn.itcast.oa.action;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
+import cn.itcast.oa.domain.Department;
+import cn.itcast.oa.domain.Role;
 import cn.itcast.oa.domain.User;
+import cn.itcast.oa.utils.DepartmentUtils;
 
 
 /**
@@ -21,6 +25,9 @@ import cn.itcast.oa.domain.User;
 @Controller
 @Scope("prototype")
 public class UserAction extends BaseAction<User> {
+	
+	private Long departmentId;  // 属性驱动封装  部门id
+	private Long[] roleIds;  // 属性驱动封装  岗位id
 	
 	/**
 	 * 
@@ -54,6 +61,14 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 */
 	public String addUI(){
+		//准备数据：1.部门树形列表  2.岗位列表(角色)
+		List<Department> topList = departmentService.findTopList();
+		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
+		
+		List<Role> roleList = roleService.findAll();
+		
+		getValueStack().set("treeList", treeList);
+		getValueStack().set("roleList", roleList);
 		
 		return "addUI";
 	}
@@ -65,6 +80,17 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 */
 	public String add(){
+		if (departmentId != null) {
+			Department dept= departmentService.getById(departmentId);
+			model.setDepartment(dept);
+		}
+		if (roleIds != null && roleIds.length > 0) {
+			List<Role> roleList = roleService.getByIds(roleIds);
+			model.setRoles(new HashSet<Role>(roleList));
+		}
+		
+		userService.save(model);
+		System.out.println("model = " + model.toString());
 		
 		return "toList";
 	}
@@ -77,6 +103,9 @@ public class UserAction extends BaseAction<User> {
 	 */
 	public String editUI(){
 		
+		User user = userService.getById(model.getId());
+		getValueStack().push(user);
+		
 		return "editUI";
 	}
 	/**
@@ -87,6 +116,19 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 */
 	public String edit(){
+		
+		User user = userService.getById(model.getId());
+		getValueStack().push(user);
+		
+		List<Department> topList = departmentService.findTopList();
+		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
+		
+		List<Role> roleList = roleService.findAll();
+		
+		getValueStack().set("treeList", treeList);
+		getValueStack().set("roleList", roleList);
+		
+		
 		
 		return "toList";
 	}

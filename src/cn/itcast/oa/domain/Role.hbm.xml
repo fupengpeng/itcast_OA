@@ -10,7 +10,7 @@
         <property name="name" length="32"></property>
         <property name="description" length="128"></property>
         <!-- 描述岗位与用户的关系 -->
-        <set name="users" table="itcase_user_role">
+        <set name="users" table="itcast_user_role">
             <key column="roleId"></key>
             <many-to-many class="cn.itcast.oa.domain.User" column="userId"></many-to-many>
         </set>

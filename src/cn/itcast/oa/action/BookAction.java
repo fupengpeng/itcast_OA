@@ -23,7 +23,8 @@ public class BookAction extends BaseAction<Book> {
 		System.out.println("model = " + model);
 		bookService.save(model);
 		
-		return NONE;
+		
+		return "book";
 	}
 
 	

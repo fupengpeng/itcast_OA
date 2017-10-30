@@ -20,6 +20,10 @@ public interface IUserService {
 
 	public void delete(User model);
 
+	public void save(User model);
+
+	public User getById(Long id);
+
 	
 
 
