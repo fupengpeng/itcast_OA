@@ -8,6 +8,7 @@
     <title>部门列表</title>
     <%@ include file="/WEB-INF/jsp/public/header.jsp"%>
 </head>
+<s:debug></s:debug>
 <body>
 
 	<div id="Title_bar">

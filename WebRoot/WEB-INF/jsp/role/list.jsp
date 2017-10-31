@@ -8,7 +8,7 @@
     <%@ include file="/WEB-INF/jsp/public/header.jsp" %>
 </head>
 <body>
- 
+<s:debug></s:debug>
 <div id="Title_bar">
     <div id="Title_bar_Head">
         <div id="Title_Head"></div>

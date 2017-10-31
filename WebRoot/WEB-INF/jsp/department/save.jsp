@@ -8,6 +8,7 @@
     <%@ include file="/WEB-INF/jsp/public/header.jsp" %>
 </head>
 <body>
+<s:debug></s:debug>
 
 <!-- 标题显示 --> 
 <div id="Title_bar">
