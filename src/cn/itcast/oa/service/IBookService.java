@@ -5,43 +5,34 @@ import java.util.List;
 import cn.itcast.oa.domain.Book;
 
 public interface IBookService {
+
+	/**
+	 * 添加
+	 */
+	public void save(Book book);
 	
 	/**
-	 * 
-	 * Description: 添加
-	 * @param entity
-	 */
-	public void save(Book entity);
-	/**
-	 * 
-	 * Description: 根据id查询
-	 * @param id
+	 * 根据id删除
 	 */
 	public void delete(Long id);
+	
 	/**
-	 * 
-	 * Description: 修改
-	 * @param entity
+	 * 根据id修改
 	 */
-	public void update(Book entity);
+	public void update(Book book);
+	
 	/**
-	 * 
-	 * Description: 根据id查询对象
-	 * @param id
-	 * @return
+	 * 根据id查询
 	 */
 	public Book getById(Long id);
+	
 	/**
-	 * 
-	 * Description: 根据id数组查询多个对象
-	 * @param ids
-	 * @return
+	 * 一次查询多个对象
 	 */
 	public List<Book> getByIds(Long[] ids);
+	
 	/**
-	 * 
-	 * Description: 查询所有
-	 * @return
+	 * 查询所有
 	 */
 	public List<Book> findAll();
 

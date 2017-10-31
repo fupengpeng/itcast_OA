@@ -4,7 +4,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
-        <property name="context-root" value="itcast_OA"/>
+        <property name="context-root" value="/itcast_OA"/>
         <property name="java-output-path" value="/itcast_OA/WebRoot/WEB-INF/classes"/>
+        <property name="me-merge-utility-modules" value="true"/>
     </wb-module>
 </project-modules>

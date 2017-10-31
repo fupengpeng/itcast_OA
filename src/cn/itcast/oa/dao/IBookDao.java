@@ -3,7 +3,6 @@ package cn.itcast.oa.dao;
 import cn.itcast.oa.base.IBaseDao;
 import cn.itcast.oa.domain.Book;
 
-
 /**
  * 
  * @Title: IBookDao
@@ -13,6 +12,6 @@ import cn.itcast.oa.domain.Book;
  * @author fupengpeng
  * @date 2017年10月20日 上午8:57:13
  */
-public interface IBookDao extends IBaseDao<Book>{
-
+public interface IBookDao extends IBaseDao<Book> {
+	
 }

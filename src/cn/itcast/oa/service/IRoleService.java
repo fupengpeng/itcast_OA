@@ -28,5 +28,4 @@ public interface IRoleService {
 
 	public List<Role> getByIds(Long[] roleIds);
 
-
 }

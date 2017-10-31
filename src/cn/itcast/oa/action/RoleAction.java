@@ -10,7 +10,6 @@ import com.opensymphony.xwork2.util.ValueStack;
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Role;
 
-
 /**
  * 
  * @Title: RoleAction
@@ -22,62 +21,69 @@ import cn.itcast.oa.domain.Role;
  */
 @Controller
 @Scope("prototype")
-public class RoleAction extends BaseAction<Role> {
-	
+public class RoleAction extends BaseAction<Role>{
 	/**
 	 * 查询岗位列表
 	 */
 	public String list(){
-		List<Role> list = roleService.findAll();  //调用BaseDaoImpl的fandAll方法获取数据
-		ValueStack vs = getValueStack();  //调用父类getValueStack方法获取值栈
-		vs.set("list", list);  //给值栈设置数据
-		return "list"; 
+		List<Role> list = roleService.findAll();
+		
+		ValueStack vs = getValueStack();
+		
+		vs.set("list", list);
+		
+		return "list";
 	}
 	
 	/**
-	 * 根据id来删除岗位
+	 * 根据id删除岗位
 	 */
 	public String delete(){
-		roleService.delete(model);  //调用BaseDaoImpl的delete方法删除数据
+		roleService.delete(model);
 		
 		return "toList";
 	}
+	
 	/**
-	 * 修改前，跳转到修改页面
+	 * 跳转到修改页面
 	 */
 	public String editUI(){
 		//根据id查询岗位，用于回显
-		Role role = roleService.getById(model.getId());  //根据id获取到要修改的数据对象
-		getValueStack().push(role);  //给值栈设置数据
+		Role role = roleService.getById(model.getId());
+		
+		getValueStack().push(role);
+		
 		return "editUI";
 	}
+	
 	/**
-	 * 根据id修改角色数据
+	 * 修改岗位
 	 */
 	public String edit(){
-		//先查询  ，再修改
-		Role role = roleService.getById(model.getId());  //根据id获取到要修改的数据对象
+		//先查询，再修改
+		Role role = roleService.getById(model.getId());
 		
-		//修改role的属性值
 		role.setName(model.getName());
 		role.setDescription(model.getDescription());
 		
-		//更改
 		roleService.update(role);
+		
 		return "toList";
 	}
+	
 	/**
-	 * 跳转添加页面
+	 * 跳转到添加页面
 	 */
 	public String addUI(){
-		
 		return "addUI";
 	}
+	
 	/**
 	 * 添加岗位
 	 */
 	public String add(){
 		roleService.save(model);
+		
 		return "toList";
 	}
 	

@@ -1,12 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
 <html>
 <head>
 	<title>岗位设置</title>
-	<%@ include file="/WEB-INF/jsp/public/header.jsp" %>
+	<%@include file="/WEB-INF/jsp/public/header.jsp" %>
 </head>
 <body> 
 <s:debug></s:debug>
@@ -23,9 +20,8 @@
 
 <!--显示表单内容-->
 <div id="MainArea">
-                         <!-- 此处使用ognl添加判断id是否为空，为空则输出add，否则输出edit，使添加和修改使用同一页面，使用此判断来识别需要展示的页面 -->
-    <s:form action="role_%{  id==null?'add':'edit'  }" namespace="/" method="post">
-        <s:hidden name="id"></s:hidden>
+    <s:form action="role_%{     id==null?'add':'edit'     }" namespace="/" method="post">
+    	<s:hidden name="id"></s:hidden>
         <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
         	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 岗位信息 </DIV>  -->
         </div>
@@ -37,14 +33,14 @@
                     <tr>
                         <td width="100">岗位名称</td>
                         <td>
-                            <s:textfield name="name" cssClass="InputStyle"></s:textfield>
-                             *
+                        	<s:textfield name="name" cssClass="InputStyle"></s:textfield>
+                        	*
                         </td>
                     </tr>
                     <tr>
                         <td>岗位说明</td>
                         <td>
-                        <s:textarea name="description" cssClass="TextareaStyle"></s:textarea>
+                        	<s:textarea name="description" cssClass="TextareaStyle"></s:textarea>	
                         </td>
                     </tr>
                 </table>
@@ -61,4 +57,3 @@
 
 </body>
 </html>
-

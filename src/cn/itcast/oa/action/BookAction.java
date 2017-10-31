@@ -1,10 +1,13 @@
 package cn.itcast.oa.action;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.util.ValueStack;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Book;
-
 
 /**
  * @Title: BookAction
@@ -15,18 +18,12 @@ import cn.itcast.oa.domain.Book;
  * @date 2017年10月20日 上午11:48:17
  */
 @Controller
-public class BookAction extends BaseAction<Book> {
-
-	@Override
+@Scope("prototype")
+public class BookAction extends BaseAction<Book>{
 	public String execute() throws Exception {
-		// 
-		System.out.println("model = " + model);
+		System.out.println(model);
+		
 		bookService.save(model);
-		
-		
-		return "book";
+		return NONE;
 	}
-
-	
-	
 }

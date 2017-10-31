@@ -1,15 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
 <html>
 <head>
 	<title>部门设置</title>
-    <%@ include file="/WEB-INF/jsp/public/header.jsp" %>
+    <%@include file="/WEB-INF/jsp/public/header.jsp" %>
 </head>
 <body>
-<s:debug></s:debug>
-
 <!-- 标题显示 --> 
 <div id="Title_bar">
     <div id="Title_bar_Head">
@@ -20,11 +15,11 @@
         <div id="Title_End"></div>
     </div>
 </div>
-
+<s:debug></s:debug>
 <!--显示表单内容-->
 <div id=MainArea>
-    <s:form action="department_%{id==null?'add':'edit'}" namespace="/" method="post">
-        <s:hidden name="id"></s:hidden>
+    <s:form action="department_%{   id==null?'add':'edit'   }">
+    	<s:hidden name="id"></s:hidden>
         <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
         	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 部门信息 </DIV>  -->
         </div>
@@ -40,13 +35,12 @@
                     </tr>
                     <tr><td>部门名称</td>
                         <td>
-                            <s:textfield name="name" cssClass="InputStyle"></s:textfield>
-                            *
-                        </td>
+                        	<s:textfield name="name" cssClass="InputStyle"></s:textfield>
+                        *</td>
                     </tr>
                     <tr><td>职能说明</td>
                         <td>
-                            <s:textarea name="description" cssClass="TextareaStyle"></s:textarea>
+                        	<s:textarea name="description" cssClass="TextareaStyle"></s:textarea>
                         </td>
                     </tr>
                 </table>
@@ -61,8 +55,6 @@
     </s:form>
 </div>
 
-
-
 <div class="Description">
 	说明：<br />
 	1，上级部门的列表是有层次结构的（树形）。<br/>
@@ -71,4 +63,3 @@
 
 </body>
 </html>
-

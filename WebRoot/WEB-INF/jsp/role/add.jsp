@@ -1,12 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
 <html>
 <head>
 	<title>岗位设置</title>
@@ -14,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
     <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
-    <script language="javascript" src="${pageContext.request.contextPath}/script/DataShowManager.js" charset="utf-8"></script>
+	<script language="javascript" src="${pageContext.request.contextPath}/script/DataShowManager.js" charset="utf-8"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
     <script type="text/javascript"> 
     </script>
@@ -46,14 +39,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <tr>
                         <td width="100">岗位名称</td>
                         <td>
-                            <s:textfield name="name" cssClass="InputStyle"></s:textfield>
-                             *
+                        	<s:textfield name="name" cssClass="InputStyle"></s:textfield>
+                        	*
                         </td>
                     </tr>
                     <tr>
                         <td>岗位说明</td>
                         <td>
-                        <s:textarea name="description" cssClass="TextareaStyle"></s:textarea>
+                        	<s:textarea name="description" cssClass="TextareaStyle"></s:textarea>	
                         </td>
                     </tr>
                 </table>
@@ -70,4 +63,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </body>
 </html>
-

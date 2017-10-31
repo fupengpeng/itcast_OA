@@ -1,6 +1,5 @@
 package cn.itcast.oa.dao.impl;
 
-
 import org.springframework.stereotype.Repository;
 
 import cn.itcast.oa.base.BaseDaoImpl;
@@ -19,8 +18,10 @@ import cn.itcast.oa.domain.Role;
  */
 @Repository
 public class RoleDaoImpl extends BaseDaoImpl<Role> implements IRoleDao {
+	
 	/**
 	 * 说明：BaseDaoImpl类已经实现了IBaseDao，而IRoleDao接口又继承了了一次IBaseDao接口，可以省略
 	 *     IRoleDao接口，但不能省略。原因：IBaseDao接口
 	 */
+	
 }

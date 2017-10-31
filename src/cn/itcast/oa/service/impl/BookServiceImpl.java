@@ -24,24 +24,18 @@ import cn.itcast.oa.service.IBookService;
 @Service
 @Transactional
 public class BookServiceImpl implements IBookService {
-
+	
 	@Resource
 	private IBookDao bookDao;
-	
-	public void save(Book entity) {
-		// TODO Auto-generated method stub
-		bookDao.save(entity);
-		
-	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		bookDao.delete(id);
 	}
 
-	public void update(Book entity) {
+	public List<Book> findAll() {
 		// TODO Auto-generated method stub
-		bookDao.update(entity);
+		return bookDao.findAll();
 	}
 
 	public Book getById(Long id) {
@@ -54,11 +48,15 @@ public class BookServiceImpl implements IBookService {
 		return bookDao.getByIds(ids);
 	}
 
-	public List<Book> findAll() {
+	public void save(Book book) {
 		// TODO Auto-generated method stub
-		return bookDao.findAll();
+		bookDao.save(book);
 	}
-	
+
+	public void update(Book book) {
+		// TODO Auto-generated method stub
+		bookDao.update(book);
+	}
 
 
 }

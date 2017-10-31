@@ -8,7 +8,6 @@ import cn.itcast.oa.base.BaseDaoImpl;
 import cn.itcast.oa.dao.IDepartmentDao;
 import cn.itcast.oa.domain.Department;
 
-
 /**
  * 
  * @Title: DepartmentDaoImpl
@@ -20,8 +19,7 @@ import cn.itcast.oa.domain.Department;
  */
 @Repository
 @SuppressWarnings("unchecked")
-public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements
-		IDepartmentDao {
+public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements IDepartmentDao{
 
 	/**
 	 * 查询顶级部门列表
@@ -35,9 +33,8 @@ public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements
 	 * 查询指定部门的子部门列表
 	 */
 	public List<Department> findChildren(Long parentId) {
-		String hql = "FROM Department d WHERE d.parent.id=?";
+		String hql = "FROM Department d WHERE d.parent.id = ?";
 		return this.getSession().createQuery(hql).setParameter(0, parentId).list();
 	}
-
 
 }

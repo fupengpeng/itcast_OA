@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 import cn.itcast.oa.base.BaseDaoImpl;
 import cn.itcast.oa.dao.IBookDao;
 import cn.itcast.oa.domain.Book;
-
-
 /**
  * 
  * @Title: BookDaoImpl

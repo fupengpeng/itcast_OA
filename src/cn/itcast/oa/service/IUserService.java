@@ -5,6 +5,7 @@ import java.util.List;
 import cn.itcast.oa.domain.User;
 
 
+
 /**
  * 
  * @Title: IUserService
@@ -24,7 +25,8 @@ public interface IUserService {
 
 	public User getById(Long id);
 
-	
+	public void update(User user);
 
+	public int findByLoginName(String loginName);
 
 }

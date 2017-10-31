@@ -3,8 +3,6 @@ package cn.itcast.oa.service;
 import java.util.List;
 
 import cn.itcast.oa.domain.Department;
-import cn.itcast.oa.domain.Role;
-
 
 /**
  * 
@@ -25,12 +23,10 @@ public interface IDepartmentService {
 
 	public void save(Department model);
 
-	public void update(Department model);
+	public void update(Department dept);
 
 	public List<Department> findTopList();
 
 	public List<Department> findChildren(Long parentId);
-	
-
 
 }

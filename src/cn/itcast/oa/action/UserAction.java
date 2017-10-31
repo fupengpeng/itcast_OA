@@ -1,8 +1,11 @@
 package cn.itcast.oa.action;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -11,7 +14,7 @@ import cn.itcast.oa.domain.Department;
 import cn.itcast.oa.domain.Role;
 import cn.itcast.oa.domain.User;
 import cn.itcast.oa.utils.DepartmentUtils;
-
+import cn.itcast.oa.utils.MD5Utils;
 
 /**
  * 
@@ -24,44 +27,33 @@ import cn.itcast.oa.utils.DepartmentUtils;
  */
 @Controller
 @Scope("prototype")
-public class UserAction extends BaseAction<User> {
+public class UserAction extends BaseAction<User>{
 	
-	private Long departmentId;  // 属性驱动封装  部门id
-	private Long[] roleIds;  // 属性驱动封装  岗位id
+	private Long departmentId;//属性驱动，部门id
+	private Long[] roleIds;//属性驱动，岗位id
 	
 	/**
-	 * 
-	 * @Description: 用户列表
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:14:15
-	 * @return 
+	 * 查询用户列表
 	 */
-	public String list() {
+	public String list(){
 		List<User> list = userService.findAll();
 		getValueStack().set("userList", list);
-		System.out.println("list = " + list);
 		return "list";
 	}
+	
 	/**
-	 * 
-	 * @Description: 根据id删除用户
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:15:26
-	 * @return 
+	 * 根据id删除用户
 	 */
 	public String delete(){
 		userService.delete(model);
 		return "toList";
 	}
+	
 	/**
-	 * 
-	 * @Description: 跳转至添加用户页面
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:16:43
-	 * @return
+	 * 跳转到用户添加页面
 	 */
 	public String addUI(){
-		//准备数据：1.部门树形列表  2.岗位列表(角色)
+		//准备数据（部门树形列表，岗位列表）
 		List<Department> topList = departmentService.findTopList();
 		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
 		
@@ -72,54 +64,34 @@ public class UserAction extends BaseAction<User> {
 		
 		return "addUI";
 	}
+	
 	/**
-	 * 
-	 * @Description: 添加用户
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:18:13
-	 * @return
+	 * 添加用户
 	 */
 	public String add(){
-		if (departmentId != null) {
-			Department dept= departmentService.getById(departmentId);
-			model.setDepartment(dept);
+		if(departmentId != null){
+			Department dept = departmentService.getById(departmentId);
+			model.setDepartment(dept);//用户关联部门
 		}
-		if (roleIds != null && roleIds.length > 0) {
+		
+		if(roleIds != null && roleIds.length > 0){
 			List<Role> roleList = roleService.getByIds(roleIds);
 			model.setRoles(new HashSet<Role>(roleList));
 		}
 		
 		userService.save(model);
-		System.out.println("model = " + model.toString());
 		
 		return "toList";
 	}
+	
 	/**
-	 * 
-	 * @Description: 跳转至修改用户信息页面
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:18:17
-	 * @return
+	 * 跳转到用户修改页面
 	 */
 	public String editUI(){
-		
 		User user = userService.getById(model.getId());
 		getValueStack().push(user);
 		
-		return "editUI";
-	}
-	/**
-	 * 
-	 * @Description: 修改用户信息
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:18:21
-	 * @return
-	 */
-	public String edit(){
-		
-		User user = userService.getById(model.getId());
-		getValueStack().push(user);
-		
+		//准备数据（部门树形列表，岗位列表）
 		List<Department> topList = departmentService.findTopList();
 		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
 		
@@ -128,21 +100,104 @@ public class UserAction extends BaseAction<User> {
 		getValueStack().set("treeList", treeList);
 		getValueStack().set("roleList", roleList);
 		
+		if(user.getDepartment() != null){
+			//查询用户所属部门，用于回显
+			departmentId = user.getDepartment().getId();
+		}
 		
+		Set<Role> roles = user.getRoles();
+		if(roles != null && roles.size() > 0){
+			//获得当前修改用户的岗位id，用于回显
+			int size = roles.size();
+			roleIds = new Long[size];
+			int c = 0;
+			for(Role role : roles){
+				roleIds[c++] = role.getId();
+			}
+		}
+		
+		return "editUI";
+	}
+	
+	/**
+	 * 根据id修改用户
+	 */
+	public String edit(){
+		//先查询，再修改
+		User user = userService.getById(model.getId());
+		
+		user.setLoginName(model.getLoginName());
+		user.setName(model.getName());
+		user.setGender(model.getGender());
+		user.setPhone(model.getPhone());
+		user.setEmail(model.getEmail());
+		user.setDescription(model.getDescription());
+		
+		if(departmentId != null){
+			Department dept = departmentService.getById(departmentId);
+			user.setDepartment(dept);
+		}else{
+			user.setDepartment(null);
+		}
+		
+		if(roleIds != null && roleIds.length > 0){
+			List<Role> roles = roleService.getByIds(roleIds);
+			user.setRoles(new HashSet<Role>(roles));
+		}else{
+			user.setRoles(null);
+		}
+		
+		userService.update(user);
 		
 		return "toList";
 	}
+
 	/**
-	 * 
-	 * @Description: 初始化密码
-	 * @author fupengpeng
-	 * @date 2017年10月25日 下午5:20:26
+	 * 初始化密码
+	 */
+	public String intiPassword(){
+		//先查询
+		User user = userService.getById(model.getId());
+		user.setPassword(MD5Utils.md5("1234"));//设置密码为1234
+		
+		userService.update(user);
+		return "toList";
+	}
+	
+	/**
+	 * 查询当前登录名是否存在
 	 * @return
 	 */
-	public String initPassword(){
-		
-		return "toList";
+	public String findByLoginName(){
+		String loginName = model.getLoginName();
+		int count = userService.findByLoginName(loginName);
+		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+		String flag = "1";
+		if(count > 0){
+			//当前登录名已经存在，不能使用
+			flag = "0";
+		}
+		try {
+			ServletActionContext.getResponse().getWriter().print(flag);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return NONE;
 	}
 
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
+	}
 
+	public Long getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setRoleIds(Long[] roleIds) {
+		this.roleIds = roleIds;
+	}
+
+	public Long[] getRoleIds() {
+		return roleIds;
+	}
 }

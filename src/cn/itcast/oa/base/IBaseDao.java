@@ -2,7 +2,6 @@ package cn.itcast.oa.base;
 
 import java.util.List;
 
-
 /**
  * 
  * @Title: IBaseDao
@@ -13,45 +12,33 @@ import java.util.List;
  * @date 2017年9月22日 下午5:26:14
  */
 public interface IBaseDao<T> {
-	
 	/**
-	 * 
-	 * Description: 保存
-	 * @param entity
+	 * 添加
 	 */
 	public void save(T entity);
+	
 	/**
-	 * 
-	 * Description: 根据id查询
-	 * @param id
+	 * 根据id删除
 	 */
 	public void delete(Long id);
+	
 	/**
-	 * 
-	 * Description: 修改
-	 * @param entity
+	 * 根据id修改
 	 */
 	public void update(T entity);
+	
 	/**
-	 * 
-	 * Description: 根据id查询对象
-	 * @param id
-	 * @return
+	 * 根据id查询
 	 */
 	public T getById(Long id);
+	
 	/**
-	 * 
-	 * Description: 根据id数组查询多个对象
-	 * @param ids
-	 * @return
+	 * 一次查询多个对象
 	 */
 	public List<T> getByIds(Long[] ids);
+	
 	/**
-	 * 
-	 * Description: 查询所有
-	 * @return
+	 * 查询所有
 	 */
 	public List<T> findAll();
-	
-
 }

@@ -4,15 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itcast.oa.dao.IDepartmentDao;
-import cn.itcast.oa.dao.IRoleDao;
-import cn.itcast.oa.domain.Department;
-import cn.itcast.oa.domain.Role;
-import cn.itcast.oa.service.IDepartmentService;
 
+import org.springframework.stereotype.Service;
+
+import cn.itcast.oa.dao.IDepartmentDao;
+import cn.itcast.oa.domain.Department;
+import cn.itcast.oa.service.IDepartmentService;
 
 /**
  * 
@@ -25,11 +24,10 @@ import cn.itcast.oa.service.IDepartmentService;
  */
 @Service
 @Transactional
-public class DepartmentServiceImpl implements IDepartmentService {
-	
+public class DepartmentServiceImpl implements IDepartmentService{
 	@Resource
 	private IDepartmentDao departmentDao;
-
+	
 	public List<Department> findAll() {
 		return departmentDao.findAll();
 	}
@@ -39,18 +37,15 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	}
 
 	public Department getById(Long parentId) {
-		// TODO Auto-generated method stub
 		return departmentDao.getById(parentId);
 	}
 
 	public void save(Department model) {
-		System.out.println("name = " + model.getName());
 		departmentDao.save(model);
 	}
 
-	public void update(Department model) {
-		// TODO Auto-generated method stub
-		departmentDao.update(model);
+	public void update(Department dept) {
+		departmentDao.update(dept);
 	}
 
 	public List<Department> findTopList() {
@@ -59,11 +54,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	}
 
 	public List<Department> findChildren(Long parentId) {
-		// TODO Auto-generated method stub
 		return departmentDao.findChildren(parentId);
 	}
-	
-	
-
 
 }

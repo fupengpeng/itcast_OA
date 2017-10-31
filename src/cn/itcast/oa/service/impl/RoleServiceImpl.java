@@ -11,7 +11,6 @@ import cn.itcast.oa.dao.IRoleDao;
 import cn.itcast.oa.domain.Role;
 import cn.itcast.oa.service.IRoleService;
 
-
 /**
  * 
  * @Title: RoleServiceImpl
@@ -24,6 +23,7 @@ import cn.itcast.oa.service.IRoleService;
 @Service
 @Transactional
 public class RoleServiceImpl implements IRoleService {
+	
 	@Resource
 	private IRoleDao roleDao;
 
@@ -33,7 +33,6 @@ public class RoleServiceImpl implements IRoleService {
 
 	public void delete(Role model) {
 		roleDao.delete(model.getId());
-		
 	}
 
 	public Role getById(Long id) {
@@ -42,7 +41,6 @@ public class RoleServiceImpl implements IRoleService {
 
 	public void update(Role role) {
 		roleDao.update(role);
-		
 	}
 
 	public void save(Role model) {
@@ -50,9 +48,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	public List<Role> getByIds(Long[] roleIds) {
-		
 		return roleDao.getByIds(roleIds);
 	}
 
-	
 }

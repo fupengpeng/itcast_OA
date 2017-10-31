@@ -13,6 +13,5 @@ import cn.itcast.oa.domain.Role;
  * @author fupengpeng
  * @date 2017年10月21日 下午3:30:26
  */
-public interface IRoleDao extends IBaseDao<Role>{
-
+public interface IRoleDao extends IBaseDao<Role> {
 }
