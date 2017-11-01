@@ -15,15 +15,15 @@ import java.util.Set;
  */
 public class User {
 	private Long id;
-	private String loginName;
-	private String name;
-	private int gender;
-	private String phone;
-	private String email;
-	private String description;
-	private String password;
-	private Department department;
-	private Set<Role> roles = new HashSet<Role>();
+	private String loginName;  //登录名(唯一)
+	private String name;  //用户名
+	private int gender;  //用户性别
+	private String phone;  //用户电话
+	private String email;  //用户邮箱
+	private String description;  //用户说明
+	private String password;  //用户登录密码
+	private Department department;  //隶属部门
+	private Set<Role> roles = new HashSet<Role>();  //隶属岗位(角色)
 	public Long getId() {
 		return id;
 	}

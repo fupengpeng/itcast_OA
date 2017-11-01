@@ -13,11 +13,11 @@ import java.util.Set;
  */
 public class Department {
 	private Long id;
-	private String name;
-	private String description;
-	private Department parent;
-	private Set<Department> children = new HashSet<Department>();
-	private Set<User> users = new HashSet<User>();
+	private String name;  //部门名称
+	private String description;  //部门说明
+	private Department parent;  //上级部门
+	private Set<Department> children = new HashSet<Department>();  //下级部门
+	private Set<User> users = new HashSet<User>();  //部门所拥有用户
 	public Long getId() {
 		return id;
 	}

@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 
  * @Title: Role
- * @Description: 岗位实体
+ * @Description: 岗位(角色)实体
  * @Company: 济宁九点连线信息技术有限公司
  * @ProjectName: itcast_OA
  * @author fupengpeng
@@ -14,9 +14,11 @@ import java.util.Set;
  */
 public class Role {
 	private Long id;
-	private String name;
-	private String description;
-	private Set<User> users = new HashSet<User>();
+	private String name;  //岗位(角色)名称
+	private String description;  //岗位(角色)说明
+	private Set<User> users = new HashSet<User>();  //岗位(角色)对应用户
+	private Set<Privilege> privileges = new HashSet<Privilege>();  //岗位(角色)对应的权限
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,5 +43,12 @@ public class Role {
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
+	public Set<Privilege> getPrivileges() {
+		return privileges;
+	}
+	public void setPrivileges(Set<Privilege> privileges) {
+		this.privileges = privileges;
+	}
+	
 	
 }
