@@ -58,7 +58,17 @@ public class UserServiceImpl implements IUserService {
 		userDao.update(user);
 	}
 
+	/**
+	 * 根据登录名查询
+	 */
 	public int findByLoginName(String loginName) {
 		return userDao.findByLoginName(loginName);
+	}
+
+	/**
+	 * 用户登录
+	 */
+	public User login(User model) {
+		return userDao.getById(model);
 	}
 }

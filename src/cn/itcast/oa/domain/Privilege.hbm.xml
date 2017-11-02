@@ -15,7 +15,7 @@
 			column="parentId"></many-to-one>
 
 		<!-- 上级权限与下级权限的一对多关系 -->
-		<set name="children">
+		<set name="children" order-by="id" lazy="false">
 			<key column="parentId"></key>
 			<one-to-many class="cn.itcast.oa.domain.Privilege"></one-to-many>
 		</set>

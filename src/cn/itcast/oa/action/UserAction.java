@@ -184,6 +184,27 @@ public class UserAction extends BaseAction<User>{
 		}
 		return NONE;
 	}
+	
+	/**
+	 * 用户登录
+	 */
+	public String login(){
+        User user = userService.login(model);
+        if (user != null) {
+			//登录成功
+        	//将登录用户放入Session
+        	ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
+        	
+        	
+        	return "home";
+		}else {
+			//登录失败
+			//设置登录失败提示
+			this.addActionError("用户名或者密码错误");
+			return "loginUI";
+		}
+		
+	}
 
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;

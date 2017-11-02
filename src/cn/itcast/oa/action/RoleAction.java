@@ -105,10 +105,9 @@ public class RoleAction extends BaseAction<Role>{
 		List<Privilege> privilegeList =  privilegeService.findTopList();  //查询顶级权限
 		getValueStack().set("privilegeList", privilegeList);
 		
-		
-		
 		//3.查询当前岗位(角色)对应的权限，用于页面回显
 		Set<Privilege> privileges = role.getPrivileges();
+	    //privilegeIds  不需要在此压栈，是因为privilegeIds是RoleAction的成员变量，而RoleAction已经被压栈，所以。。。
 		if (privileges != null && privileges.size() > 0) {
 			privilegeIds = new Long[privileges.size()] ;
 			int index = 0;
