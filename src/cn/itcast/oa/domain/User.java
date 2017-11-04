@@ -27,7 +27,7 @@ public class User {
 	/**
 	 * 判断当前用户是否有给定的权限
 	 */
-	public boolean hasPrivilegeByName(String url) {
+	public boolean hasPrivilegeByName(String name) {
 		// 如果登录用户是超级管理员，就直接返回true
 		if (isAdmin()) {
 			System.out.println("----------超级管理员");
@@ -38,12 +38,10 @@ public class User {
 			Set<Privilege> privileges = role.getPrivileges();
 			// 遍历角色对应的权限
 			for (Privilege p : privileges) {
-				String pUrl = p.getUrl();
-				System.out.println("---------------pUrl = " + pUrl);
-				System.out.println("-------------url = " + url);
-				if (pUrl.equals(url)) {
-					System.out.println("----------------url = " + url);
-					System.out.println("----------------普通管理员");
+				String pName = p.getName();
+				System.out.println("------pName = " + pName + "   -----name = " + name);
+				if (pName.equals(name)) {
+					System.out.println("---相同，展示此权限----pName = " + pName);
 					return true;
 				}
 			}
@@ -51,12 +49,7 @@ public class User {
 		return false;
 	}
 
-	/**
-	 * 判断当前用户是否是超级管理员
-	 */
-	public boolean isAdmin() {
-		return "admin".equals(loginName);
-	}
+
 
 	/**
 	 * 判断当前用户是否有给定的权限url
@@ -75,11 +68,11 @@ public class User {
 			Set<Privilege> privileges = role.getPrivileges();
 			// 遍历角色对应的权限
 			for (Privilege p : privileges) {
-				String pName = p.getUrl();
-				System.out.println("---------------pName = " + pName);
-				System.out.println("-------------name = " + name);
-				if (pName.equals(name)) {
-					System.out.println("----------------name = " + name);
+				String pUrl = p.getUrl();
+				System.out.println("---------------pUrl = " + pUrl);
+				System.out.println("-------------url = " + url);
+				if (url.equals(pUrl)) {
+					System.out.println("----------------url = " + url);
 					System.out.println("----------------普通管理员");
 					return true;
 				}
@@ -88,6 +81,14 @@ public class User {
 
 		return false;
 	}
+	
+	/**
+	 * 判断当前用户是否是超级管理员
+	 */
+	public boolean isAdmin() {
+		return "admin".equals(loginName);
+	}
+	
 
 	public Long getId() {
 		return id;

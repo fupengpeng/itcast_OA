@@ -35,9 +35,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
         <div id="Head1Right_SystemButton">
-            <a target="_parent" href="System_User/logout.html">
+            <s:a target="_parent" action="user_logout" namespace="/">
 				<img width="78" height="20" alt="退出系统" src="${pageContext.request.contextPath}/style/blue/images/top/logout.gif" />
-			</a>
+			</s:a>
         </div>
 		
         <div id="Head1Right_Button">

@@ -49,6 +49,11 @@ public class OAInitListener implements ServletContextListener {
     	System.out.println("---------------------------------");
     	
     	
+    	//查询所有要进行校验的权限url
+    	List<String> allUrl = service.findAllUrl();
+    	sce.getServletContext().setAttribute("allUrl", allUrl);
+    	
+    	
     	
     }
 

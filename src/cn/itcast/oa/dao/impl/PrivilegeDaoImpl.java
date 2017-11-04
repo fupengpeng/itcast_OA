@@ -6,9 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import cn.itcast.oa.base.BaseDaoImpl;
 import cn.itcast.oa.dao.IPrivilegeDao;
-import cn.itcast.oa.dao.IRoleDao;
 import cn.itcast.oa.domain.Privilege;
-import cn.itcast.oa.domain.Role;
 
 
 /**
@@ -35,6 +33,14 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements IPrivile
 	 */
 	public List<Privilege> findTopList() {
 		String hql = "FROM Privilege p WHERE p.parent IS NULL";
+		return this.getSession().createQuery(hql).list();
+	}
+
+	/**
+	 * 查询所有权限对应的url
+	 */
+	public List<String> findAllUrl() {
+		String hql = "SELECT url FROM Privilege WHERE url IS NOT NULL";
 		return this.getSession().createQuery(hql).list();
 	}
 	

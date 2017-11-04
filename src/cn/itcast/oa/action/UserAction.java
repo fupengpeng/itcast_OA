@@ -205,6 +205,18 @@ public class UserAction extends BaseAction<User>{
 		}
 		
 	}
+	
+	/**
+	 * 用户退出系统
+	 */
+	public String logout(){
+		//清除session中的数据
+		ServletActionContext.getRequest().getSession().removeAttribute("loginUser");
+		//跳转至登录页面
+		return "loginUI";
+	}
+	
+	
 
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;

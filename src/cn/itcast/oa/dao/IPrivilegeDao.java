@@ -19,4 +19,6 @@ import cn.itcast.oa.domain.Privilege;
 public interface IPrivilegeDao extends IBaseDao<Privilege> {
 
 	public List<Privilege> findTopList();
+
+	public List<String> findAllUrl();
 }
