@@ -5,12 +5,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import cn.itcast.oa.dao.IUserDao;
 import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IUserService;
+import cn.itcast.oa.utils.MD5Utils;
 /**
  * 
  * @Title: UserServiceImpl
@@ -41,6 +41,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	public void save(User model) {
+		model.setPassword(MD5Utils.md5("1234"));  //为新用户指定默认密码
 		userDao.save(model);
 	}
 

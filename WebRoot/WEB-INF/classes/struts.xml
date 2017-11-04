@@ -11,6 +11,23 @@
     <!-- 指定表单主题 -->
 	<constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
+        <!-- 声明自定义拦截器 -->
+        <interceptors>
+            <interceptor name="checkPrivilegeInterceptor" class="cn.itcast.oa.interceptor.CheckPrivilegeInterceptor"></interceptor>
+            <!-- 自定义拦截器栈 -->
+            <interceptor-stack name="myInterceptor">
+                <interceptor-ref name="checkPrivilegeInterceptor"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        
+        <!-- 指定默认的拦截器栈 -->
+        <default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+        
+        <!-- 配置全局结果视图 -->
+        <global-results>
+            <result name="loginUI">/login.jsp</result>
+        </global-results>
     
     	<action name="book_*" class="bookAction" method="{1}">
     	    <result name="book">/WEB-INF/jsp/book/save.jsp</result>

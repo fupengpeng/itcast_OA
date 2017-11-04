@@ -17,7 +17,7 @@
 		</set>
 
 		<!-- 描述岗位(角色)与权限的关系 -->
-		<set name="privileges" table="itcast_role_privilege">
+		<set name="privileges" table="itcast_role_privilege" lazy="false">
 			<key column="roleId"></key>
 			<many-to-many class="cn.itcast.oa.domain.Privilege"
 				column="privilegeId"></many-to-many>

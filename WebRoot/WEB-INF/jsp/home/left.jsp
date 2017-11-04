@@ -347,8 +347,8 @@
 			</li>
 
 			<s:iterator value="#application.privilegeTopList">
-				<!-- 判断登录人是否有当前权限 -->
-				<%-- <s:if test="#session.loginUser.hasPrivilegeByName(name)"> --%><!-- 从session中获取登录用户，根据登录用户的角色，获取对应的权限，判断此权限是否与当前循环出的权限是否一致，一致就显示，否则不展示 -->
+				<!-- 判断登录人是否有当前权限 --><!-- 使用ognl表达式调用对象的方法（hasPrivilegeByName） -->
+				<s:if test="#session.loginUser.hasPrivilegeByName(name)"><!-- 从session中获取登录用户，根据登录用户的角色，获取对应的权限，判断此权限是否与当前循环出的权限是否一致，一致就显示，否则不展示 -->
 				<li class="level1">
 					<div onclick="menuClick(this);" class="level1Style">
 						<img
@@ -362,16 +362,16 @@
 								<div class="level2Style">
 									<img
 										src="${pageContext.request.contextPath}/style/images/MenuIcon/menu_arrow_single.gif" />
-									<s:a target="right" action="%{url}" namespace="/"> ${name}</s:a>
-									<%-- <a target="right"
-										href="${pageContext.request.contextPath}${url}.do">${name }</a> --%>
+									<%-- <s:a target="right" action="%{url}" namespace="/"> ${name}</s:a> --%>
+									<a target="right"
+										href="${pageContext.request.contextPath}${url}.do">${name }</a>
 								</div>
 							</li>
 						</s:iterator>
 
 					</ul>
 				</li>
-				<%-- </s:if> --%>
+				</s:if>
 			</s:iterator>
 
 

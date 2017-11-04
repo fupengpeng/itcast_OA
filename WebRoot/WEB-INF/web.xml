@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  
+  <!-- 配置过滤器，让hibernate的session设置成全局变量，在action中也可以使用，用以保证在查询数据库时把一次查询完毕之后再关闭session。防止出现页面中需要的数据还没有查询完毕就已经关闭了session的错误 -->
   <filter>
     <filter-name>openSessionInView</filter-name>
     <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>

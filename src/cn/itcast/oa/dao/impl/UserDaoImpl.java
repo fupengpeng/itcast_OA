@@ -20,6 +20,7 @@ import cn.itcast.oa.utils.MD5Utils;
  * @date 2017年10月25日 下午5:23:35
  */
 @Repository
+@SuppressWarnings("unchecked")
 public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 
 	/**
