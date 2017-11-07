@@ -27,4 +27,8 @@ public interface IForumManageService {
 
 	public void update(Forum forum);
 
+	public void moveUp(Forum model);
+
+	public void moveDewn(Forum model);
+
 }

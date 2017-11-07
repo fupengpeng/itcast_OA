@@ -16,4 +16,15 @@ import cn.itcast.oa.domain.Forum;
  */
 public interface IForumManageDao extends IBaseDao<Forum> {
 
+	/**
+	 * 上移板块
+	 */
+	public void moveUp(Forum model);
+
+	/**
+	 * 下移板块
+	 * @param model
+	 */
+	public void moveDown(Forum model);
+
 }

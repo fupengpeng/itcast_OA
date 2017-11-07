@@ -36,8 +36,8 @@
 				<td>${description}&nbsp;</td>
 				<td><s:a onclick="return window.confirm('确定删除当前记录吗？')" action="forumManage_delete?id=%{id}" namespace="/">删除</s:a>
 					<s:a action="forumManage_editUI?id=%{id}" namespace="/">修改</s:a>
-					<a href="#">上移</a>
-					<a href="#">下移</a>
+					<s:a action="forumManage_moveUp?id=%{id}" namespace="/">上移</s:a>
+					<s:a action="forumManage_moveDown?id=%{id}" namespace="/">下移</s:a>
 				</td>
 			</tr>
 			</s:iterator>

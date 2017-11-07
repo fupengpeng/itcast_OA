@@ -79,7 +79,8 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * 上移
 	 */
 	public String moveUp(){
-		
+		//select f.* from itcast_forum f where f.position < 11 order by f.position desc limit 0,1;
+		forumManageService.moveUp(model);
 		return "toList";
 	}
 	
@@ -87,7 +88,7 @@ public class ForumManageAction extends BaseAction<Forum> {
 	 * 下移
 	 */
 	public String moveDown(){
-		
+		forumManageService.moveDewn(model);
 		return "toList";
 	}
 }

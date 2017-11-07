@@ -65,4 +65,13 @@ public class ForumServiceManageImpl implements IForumManageService {
 		forumManageDao.update(forum);
 	}
 
+	public void moveUp(Forum model) {
+		forumManageDao.moveUp(model);
+	}
+
+	public void moveDewn(Forum model) {
+		forumManageDao.moveDown(model);
+		
+	}
+
 }
