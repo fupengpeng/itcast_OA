@@ -30,14 +30,27 @@
 
 		<!--显示数据列表-->
         <tbody id="TableData" class="dataContainer" datakey="forumList">
-			<s:iterator value="list">
+			<s:iterator value="list" status="s">
 			<tr class="TableDetail1 template">
 				<td>${name}&nbsp;</td>
 				<td>${description}&nbsp;</td>
 				<td><s:a onclick="return window.confirm('确定删除当前记录吗？')" action="forumManage_delete?id=%{id}" namespace="/">删除</s:a>
 					<s:a action="forumManage_editUI?id=%{id}" namespace="/">修改</s:a>
-					<s:a action="forumManage_moveUp?id=%{id}" namespace="/">上移</s:a>
-					<s:a action="forumManage_moveDown?id=%{id}" namespace="/">下移</s:a>
+					<%-- <s:property value="#s.count" />
+					<s:property value="#s.index" /> --%>
+					<s:if test="#s.first">
+					        上移
+					</s:if>
+					<s:else>
+					    <s:a action="forumManage_moveUp?id=%{id}" namespace="/">上移</s:a>
+					</s:else>
+					<s:if test="#s.last">
+					        下移
+					</s:if>
+					<s:else>
+					    <s:a action="forumManage_moveDown?id=%{id}" namespace="/">下移</s:a>
+					</s:else>
+					
 				</td>
 			</tr>
 			</s:iterator>

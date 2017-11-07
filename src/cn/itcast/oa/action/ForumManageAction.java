@@ -12,7 +12,7 @@ import cn.itcast.oa.domain.Forum;
 /**
  * 
  * @Title: ForumAction
- * @Description: 板块管理Action
+ * @Description: 板块管理Action----增删改
  * @Company: 济宁九点连线信息技术有限公司
  * @ProjectName: itcast_OA
  * @author fupengpeng
