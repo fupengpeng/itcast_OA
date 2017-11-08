@@ -9,7 +9,7 @@
 		</id>
 		<property name="name"></property>
 		<property name="description"></property>
-		<property name="position"></property>
+		<property name="position" column="position_"></property>
 		<property name="topicCount"></property>
 		<property name="articleCount"></property>
 		
