@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.Topic;
 
 
 /**
@@ -35,8 +36,13 @@ public class ForumAction extends BaseAction<Forum> {
 	 * 查询主题列表(单个板块)
 	 */
 	public String show(){
+		//根据板块id查询此板块主题列表
+		List<Topic> topicList = topicService.findTopicByForum(model);
+		getValueStack().set("topicList", topicList);
 		
-		
+		//根据板块id查询版块名称
+		Forum forum = forumService.getById(model);
+		getValueStack().push(forum);
 		return "forumShow";
 	}
 }

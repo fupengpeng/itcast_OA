@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd" >
 <html>
 <head>
 <title>论坛</title>
@@ -48,8 +49,9 @@
 							</td>
 							<td class="ForumPageTableDataLine">
 								<ul class="ForumPageTopicUl">
-									<li class="ForumPageTopic"><a class="ForumPageTopic"
-										href="forumShow.html">${name}</a></li>
+									<li class="ForumPageTopic">
+									    <s:a cssClass="ForumPageTopic" action="forum_show?id=%{id}" namespace="/">${name}</s:a>
+									</li>
 									<li class="ForumPageTopicMemo">${description}</li>
 								</ul>
 							</td>
@@ -57,14 +59,18 @@
 							<td class="ForumPageTableDataLine"><b>${articleCount}</b></td>
 							<td class="ForumPageTableDataLine">
 								<ul class="ForumPageTopicUl">
-									<li><font color="#444444">┌ 主题：</font> <a
-										class="ForumTitle"
-										href="${pageContext.request.contextPath}/BBS_Topic/topicShow.html">${lastTopic.title}</a>
+									<li>
+									    <font color="#444444">┌ 主题：</font> 
+									    <a class="ForumTitle" href="${pageContext.request.contextPath}/BBS_Topic/topicShow.html">${lastTopic.title}</a>
 									</li>
-									<li><font color="#444444">├ 作者：</font>
-										${lastTopic.author.name}</li>
-									<li><font color="#444444">└ 时间：</font>
-										${lastTopic.postTime}</li>
+									<li>
+							            <font color="#444444">├ 作者：</font>
+										${lastTopic.author.name}
+									</li>
+									<li>
+									    <font color="#444444">└ 时间：</font>
+										${lastTopic.postTime}
+									</li>
 								</ul>
 							</td>
 							<td width="3"></td>

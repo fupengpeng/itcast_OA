@@ -19,7 +19,7 @@ public class Topic extends Article{
 	
 	private String title;   //主题标题
 	private Date lastUpdateTime;    //最后更新时间
-	private int type;    //主题类型
+	private int type;    //主题类型    0:普通帖    1:精华帖    2:置顶帖
 	private Forum forum;  //隶属于那个板块
 	private Set<Reply> replies = new HashSet<Reply>();   // 主题回复
 	private int replyCount;  //回复数量
