@@ -5,11 +5,15 @@ import java.lang.reflect.Type;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
+
+import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IBookService;
 import cn.itcast.oa.service.IDepartmentService;
 import cn.itcast.oa.service.IForumManageService;
 import cn.itcast.oa.service.IForumService;
 import cn.itcast.oa.service.IPrivilegeService;
+import cn.itcast.oa.service.IReplyService;
 import cn.itcast.oa.service.IRoleService;
 import cn.itcast.oa.service.ITopicService;
 import cn.itcast.oa.service.IUserService;
@@ -45,6 +49,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected IForumService forumService;
 	@Resource
 	protected ITopicService topicService;
+	@Resource
+	protected IReplyService replyService;
 	
 	//在构造方法中获得model类型
 	public BaseAction(){
@@ -72,6 +78,22 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	 */
 	protected ValueStack getValueStack(){
 		return ActionContext.getContext().getValueStack();
+	}
+	
+	/**
+	 * 获取客户端ip地址
+	 */
+	public String getIpAddress(){
+		
+		return ServletActionContext.getRequest().getRemoteAddr();
+	}
+	
+	/**
+	 * 获取当前登录用户
+	 */
+	public User getLoginUser(){
+		
+		return (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 	}
 	
 }

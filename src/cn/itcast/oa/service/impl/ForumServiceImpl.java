@@ -35,6 +35,10 @@ public class ForumServiceImpl implements IForumService {
 	public Forum getById(Forum model) {
 		return forumDao.getById(model.getId());
 	}
+
+	public Forum getById(Long forumId) {
+		return forumDao.getById(forumId);
+	}
 	
 	
 	

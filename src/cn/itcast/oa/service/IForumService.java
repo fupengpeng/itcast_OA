@@ -21,4 +21,6 @@ public interface IForumService {
 
 	public Forum getById(Forum model);
 
+	public Forum getById(Long forumId);
+
 }

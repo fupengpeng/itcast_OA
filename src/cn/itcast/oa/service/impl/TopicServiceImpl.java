@@ -33,6 +33,32 @@ public class TopicServiceImpl implements ITopicService {
 	public List<Topic> findTopicByForum(Forum model) {
 		return topicDao.findTopicByForum(model);
 	}
+
+	
+	/**
+	 * 发表主题
+	 */
+	public void save(Topic model) {
+		topicDao.save(model);
+		//设置主题板块的其他信息
+		Forum forum = model.getForum();  // 
+		forum.setTopicCount(forum.getTopicCount() + 1 );  //当前主题所在板块主题数量加1 
+		forum.setArticleCount(forum.getArticleCount() + 1);  //当前主题所在版块文章数量加1 
+		forum.setLastTopic(model);   //设置板块的最后发表主题为当前主题
+	}
+
+
+	/**
+	 * 根据id查询主题
+	 */
+	public Topic getById(Topic model) {
+		return topicDao.getById(model.getId());
+	}
+
+
+	public Topic getById(Long topicId) {
+		return topicDao.getById(topicId);
+	}
 	
 	
 }

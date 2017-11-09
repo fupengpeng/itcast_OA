@@ -92,5 +92,26 @@
     	</action>
     	
     	
+    	<!-- 主题贴Action -->
+    	<action name="topic_*" class="topicAction" method="{1}">
+    	    <result name="addUI">/WEB-INF/jsp/topic/add.jsp</result>
+    	    <result name="toTopicList" type="redirectAction">
+    	        <param name="actionName">forum_show?id=${forumId}</param>
+    			<param name="namespace">/</param>
+    	    </result>
+    	    <result name="show">/WEB-INF/jsp/topic/show.jsp</result>
+    	</action>
+    	
+    	<!-- 回复Action -->
+    	<action name="reply_*" class="replyAction" method="{1}">
+    	    <result name="toReplyList" type="redirectAction">
+    	        <param name="actionName">topic_show?id=${topicId}</param>
+    			<param name="namespace">/</param>
+    	    </result>
+    	    <result name="addUI">/WEB-INF/jsp/reply/add.jsp</result>
+    	</action>
+    	
+    	
+    	
     </package>
 </struts>
