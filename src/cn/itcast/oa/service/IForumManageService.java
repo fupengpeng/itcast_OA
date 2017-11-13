@@ -3,6 +3,8 @@ package cn.itcast.oa.service;
 import java.util.List;
 
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
+import cn.itcast.oa.utils.HQLHelper;
 
 
 /**
@@ -30,5 +32,7 @@ public interface IForumManageService {
 	public void moveUp(Forum model);
 
 	public void moveDewn(Forum model);
+
+	public PageBean getPageBean(HQLHelper hh, int currentPage);
 
 }

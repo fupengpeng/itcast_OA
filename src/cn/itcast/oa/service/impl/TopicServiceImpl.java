@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.oa.dao.ITopicDao;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Topic;
 import cn.itcast.oa.service.ITopicService;
+import cn.itcast.oa.utils.HQLHelper;
 
 
 /**
@@ -58,6 +60,14 @@ public class TopicServiceImpl implements ITopicService {
 
 	public Topic getById(Long topicId) {
 		return topicDao.getById(topicId);
+	}
+
+
+	/**
+	 * 分页
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return topicDao.getPageBean(hh, currentPage);
 	}
 	
 	

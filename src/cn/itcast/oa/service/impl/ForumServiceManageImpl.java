@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.oa.dao.IForumManageDao;
 import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.service.IForumManageService;
+import cn.itcast.oa.utils.HQLHelper;
 
 
 /**
@@ -72,6 +74,13 @@ public class ForumServiceManageImpl implements IForumManageService {
 	public void moveDewn(Forum model) {
 		forumManageDao.moveDown(model);
 		
+	}
+
+	/**
+	 * 分页查询
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return forumManageDao.getPageBean(hh, currentPage);
 	}
 
 }

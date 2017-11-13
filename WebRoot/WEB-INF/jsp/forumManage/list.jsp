@@ -30,7 +30,7 @@
 
 		<!--显示数据列表-->
         <tbody id="TableData" class="dataContainer" datakey="forumList">
-			<s:iterator value="list" status="s">
+			<s:iterator value="recordList" status="s">
 			<tr class="TableDetail1 template">
 				<td>${name}&nbsp;</td>
 				<td>${description}&nbsp;</td>
@@ -64,6 +64,10 @@
         </div>
     </div>
 </div>
+<!-- 包含分页信息 -->
+<%@include file="/WEB-INF/jsp/public/pageView.jsp" %>
+<!-- 提供一个分页用的表单 -->
+<s:form id="pageForm" action="forumManage_list" namespace="/"></s:form>
 
 <div class="Description">
 	说明：<br />

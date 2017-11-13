@@ -11,9 +11,12 @@ import org.springframework.stereotype.Controller;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Department;
+import cn.itcast.oa.domain.Forum;
+import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Role;
 import cn.itcast.oa.domain.User;
 import cn.itcast.oa.utils.DepartmentUtils;
+import cn.itcast.oa.utils.HQLHelper;
 import cn.itcast.oa.utils.MD5Utils;
 
 /**
@@ -36,8 +39,13 @@ public class UserAction extends BaseAction<User>{
 	 * 查询用户列表
 	 */
 	public String list(){
-		List<User> list = userService.findAll();
-		getValueStack().set("userList", list);
+//		List<User> list = userService.findAll();
+//		getValueStack().set("userList", list);
+		
+		HQLHelper hh = new HQLHelper(User.class);
+		PageBean pb = userService.getPageBean(hh,currentPage);
+		getValueStack().push(pb);
+		
 		return "list";
 	}
 	
