@@ -10,12 +10,13 @@ import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Book;
 
 /**
+ * 
  * @Title: BookAction
- * @Description: BaseAction测试
- * @Company: 济宁九点连线信息技术有限公司
+ * @Description: 描述
+ * @Company: 山东九点连线信息技术有限公司
  * @ProjectName: itcast_OA
  * @author fupengpeng
- * @date 2017年10月20日 上午11:48:17
+ * @date 2017年11月14日 下午1:01:03
  */
 @Controller
 @Scope("prototype")
