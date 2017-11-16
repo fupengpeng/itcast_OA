@@ -111,6 +111,15 @@
     	    <result name="addUI">/WEB-INF/jsp/reply/add.jsp</result>
     	</action>
     	
+    	<!-- 流程定义管理Action -->
+    	<action name="processDefinition_*" class="processDefinitionAction" method="{1}">
+    	    <result name="list">/WEB-INF/jsp/processDefinition/list.jsp</result>
+    	    <result name="addUI">/WEB-INF/jsp/processDefinition/add.jsp</result>
+    	    <result name="toList" type="redirectAction">
+    	        <param name="actionName">processDefinition_list</param>
+    			<param name="namespace">/</param>
+    	    </result>
+    	</action>
     	
     	
     </package>
