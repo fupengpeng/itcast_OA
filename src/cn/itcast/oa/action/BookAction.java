@@ -24,7 +24,7 @@ public class BookAction extends BaseAction<Book>{
 	public String execute() throws Exception {
 		System.out.println(model);
 		
-		bookService.save(model);
+		bookService.delete(model.getId());
 		return NONE;
 	}
 }
