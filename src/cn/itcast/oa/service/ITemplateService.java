@@ -1,5 +1,9 @@
 package cn.itcast.oa.service;
 
+import java.util.List;
+
+import cn.itcast.oa.domain.Template;
+
 
 /**
  * 
@@ -11,6 +15,8 @@ package cn.itcast.oa.service;
  * @date 2017年11月17日 上午10:16:46
  */
 public interface ITemplateService {
+
+	public List<Template> findAll();
 
 
 }

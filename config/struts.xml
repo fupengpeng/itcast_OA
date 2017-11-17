@@ -125,6 +125,11 @@
     	    </result>
     	</action>
     	
+    	<!-- 模板管理Action -->
+    	<action name="template_*" class="templateAction" method="{1}">
+    	    <result name="list">/WEB-INF/jsp/template/list.jsp</result>
+    	    <result name="addUI">/WEB-INF/jsp/template/save.jsp</result>
+    	</action>
     	
     </package>
 </struts>
