@@ -11,7 +11,13 @@
 <head>
 <title>审批流程列表</title>
 <%@include file="/WEB-INF/jsp/public/header.jsp"%>
-
+<script type="text/javascript">
+    function showImage(id){
+        var url = "${pageContext.request.contextPath}/processDefinition_showImage.do?id=" + id;
+        window.showModalDialog(url,"","dialogHeight:600px;dialogWidth:500px;dialogLeft:500px;dialogTop:200");
+        
+    }
+</script>
 </head>
 <body>
 
@@ -50,7 +56,7 @@
 						<td>${description}&nbsp;</td>
 						<td>
 						    <s:a onclick="return window.confirm('确定删除当前记录吗？')" action="processDefinition_delete?key=%{key}" namespace="/">删除</s:a>
-							<s:a >查看流程图</s:a>
+							<a href="#" onclick="showImage('${id}');" >查看流程图</a>
 						</td>
 					</tr>
 				</s:iterator>

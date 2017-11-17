@@ -119,6 +119,10 @@
     	        <param name="actionName">processDefinition_list</param>
     			<param name="namespace">/</param>
     	    </result>
+    	    <result name="showImage" type="stream">
+    	        <param name="contentType">image/png</param>
+    	        <param name="inputName">inputStream</param>
+    	    </result>
     	</action>
     	
     	

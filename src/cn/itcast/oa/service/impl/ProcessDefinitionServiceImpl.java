@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -96,6 +97,20 @@ public class ProcessDefinitionServiceImpl implements IProcessDefinitionService {
 		}
 		
 		
+	}
+
+	/**
+	 * 根据流程定义的id来获取此流程定义对应的图片文件输入流
+	 */
+	public InputStream getImageInputStream(String id) {
+		ProcessDefinitionQuery query = processEngine.getRepositoryService().createProcessDefinitionQuery();
+		query.processDefinitionId(id);
+		ProcessDefinition pd = query.uniqueResult();
+		String name = pd.getImageResourceName();
+		
+		InputStream inputStream = processEngine.getRepositoryService().getResourceAsStream(pd.getDeploymentId(), name);
+		
+		return inputStream;
 	}
 	
 	
