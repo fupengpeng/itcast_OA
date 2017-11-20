@@ -1,6 +1,7 @@
 package cn.itcast.oa.action;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,8 @@ import org.apache.struts2.ServletActionContext;
 import org.jbpm.api.ProcessDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.sun.mail.util.BASE64EncoderStream;
 
 import cn.itcast.oa.base.BaseAction;
 import cn.itcast.oa.domain.Template;
@@ -31,6 +34,8 @@ public class TemplateAction extends BaseAction<Template> {
 	private File resource; // 用于文件上传
 	
 	private InputStream downloadFile; // 用于文件下载的输入流
+	
+	private String fileName;  //下载时的模板名称
 
 	/**
 	 * 查询模板列表
@@ -122,7 +127,8 @@ public class TemplateAction extends BaseAction<Template> {
 	 */
 	public String download() {
 		downloadFile = templateService.getInputStreamById(model);
-		
+		Template template = templateService.getById(model);
+		fileName = template.getName() + ".doc";
 		return "download";
 	}
 
@@ -149,6 +155,8 @@ public class TemplateAction extends BaseAction<Template> {
 		resource.renameTo(dest);
 		return filePath;
 	}
+	
+	
 
 	public File getResource() {
 		return resource;

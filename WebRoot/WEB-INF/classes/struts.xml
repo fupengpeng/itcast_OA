@@ -135,8 +135,8 @@
     	    </result>
     	    <result name="editUI">/WEB-INF/jsp/template/save.jsp</result>
     	    <result name="download" type="stream">
-    	        <param name="inputName">inputStream</param>
-    			<param name="contentDisposition">attachment;filename="decument.doc"</param>
+    	        <param name="inputName">downloadFile</param>
+    			<param name="contentDisposition">attachment;filename="${filaName}"</param>
     	    </result>
     	</action>
     	
