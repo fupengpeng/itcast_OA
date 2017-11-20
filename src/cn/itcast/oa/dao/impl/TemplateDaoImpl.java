@@ -1,5 +1,7 @@
 package cn.itcast.oa.dao.impl;
 
+import java.io.File;
+
 import org.springframework.stereotype.Repository;
 
 import cn.itcast.oa.base.BaseDaoImpl;
@@ -21,4 +23,21 @@ import cn.itcast.oa.domain.Template;
 @SuppressWarnings("unchecked")
 public class TemplateDaoImpl extends BaseDaoImpl<Template> implements ITemplateDao{
 
+	/**
+	 * 重写删除方法，删除模板对象时，也删除对应的文件
+	 */
+	public void delete(Long id) {
+		Template template = super.getById(id);
+		String filePath = template.getFilePath();  //获取模板对象保存的路径
+		//删除此路径下的文件
+		File file = new File(filePath);
+		if (file.exists()) {
+			file.delete();
+		}
+		
+		super.delete(id);  //删除数据库中的数据
+	}
+	
+	
+	
 }

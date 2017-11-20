@@ -1,5 +1,6 @@
 package cn.itcast.oa.service;
 
+import java.io.InputStream;
 import java.util.List;
 
 import cn.itcast.oa.domain.Template;
@@ -17,6 +18,16 @@ import cn.itcast.oa.domain.Template;
 public interface ITemplateService {
 
 	public List<Template> findAll();
+
+	public void save(Template model);
+
+	public void delete(Template model);
+
+	public Template getById(Template model);
+
+	public void update(Template template);
+
+	public InputStream getInputStreamById(Template model);
 
 
 }

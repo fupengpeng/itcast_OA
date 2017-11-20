@@ -15,5 +15,6 @@ import cn.itcast.oa.domain.Template;
  * @date 2017年11月17日 上午10:19:25
  */
 public interface ITemplateDao extends IBaseDao<Template> {
-
+	
+	
 }

@@ -42,9 +42,9 @@
 			<tr class="TableDetail1 template">
 					<td>${name}&nbsp;</td>
 					<td>${processDefinitionKey}&nbsp;</td>
-					<td><a onClick="return delConfirm()" href="#">删除</a>
-						<a href="saveUI.html">修改</a>
-						<a href="#">下载</a>
+					<td><s:a onclick="return window.confirm('确定删除当前记录吗？')" action="template_delete?id=%{id}" namespace="/">删除</s:a>
+						<s:a action="template_editUI?id=%{id}" namespace="/">修改</s:a>
+						<s:a action="template_download?id=%{id}" namespace="/">下载</s:a>
 					</td>
 			</tr>
 			</s:iterator>

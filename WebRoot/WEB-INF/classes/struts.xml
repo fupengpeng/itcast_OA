@@ -129,6 +129,15 @@
     	<action name="template_*" class="templateAction" method="{1}">
     	    <result name="list">/WEB-INF/jsp/template/list.jsp</result>
     	    <result name="addUI">/WEB-INF/jsp/template/save.jsp</result>
+    	     <result name="toList" type="redirectAction">
+    	        <param name="actionName">template_list</param>
+    			<param name="namespace">/</param>
+    	    </result>
+    	    <result name="editUI">/WEB-INF/jsp/template/save.jsp</result>
+    	    <result name="download" type="stream">
+    	        <param name="inputName">inputStream</param>
+    			<param name="contentDisposition">attachment;filename="decument.doc"</param>
+    	    </result>
     	</action>
     	
     </package>
