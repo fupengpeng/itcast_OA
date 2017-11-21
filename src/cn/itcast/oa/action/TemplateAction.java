@@ -3,6 +3,7 @@ package cn.itcast.oa.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,8 @@ import org.apache.struts2.ServletActionContext;
 import org.jbpm.api.ProcessDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import sun.misc.BASE64Encoder;
 
 import com.sun.mail.util.BASE64EncoderStream;
 
@@ -32,10 +35,10 @@ import cn.itcast.oa.domain.Template;
 public class TemplateAction extends BaseAction<Template> {
 
 	private File resource; // 用于文件上传
-	
+
 	private InputStream downloadFile; // 用于文件下载的输入流
-	
-	private String fileName;  //下载时的模板名称
+
+	private String fileName; // 下载时的模板名称
 
 	/**
 	 * 查询模板列表
@@ -90,8 +93,8 @@ public class TemplateAction extends BaseAction<Template> {
 			if (file.exists()) {
 				file.delete();
 			}
-			
-			template.setFilePath(filePath); //设置新文件的路径
+
+			template.setFilePath(filePath); // 设置新文件的路径
 		}
 
 		templateService.update(template);
@@ -122,15 +125,7 @@ public class TemplateAction extends BaseAction<Template> {
 		return "toList";
 	}
 
-	/**
-	 * 下载模板对应的文件
-	 */
-	public String download() {
-		downloadFile = templateService.getInputStreamById(model);
-		Template template = templateService.getById(model);
-		fileName = template.getName() + ".doc";
-		return "download";
-	}
+
 
 	/**
 	 * 
@@ -156,7 +151,43 @@ public class TemplateAction extends BaseAction<Template> {
 		return filePath;
 	}
 	
-	
+	/**
+	 * 下载模板对应的文件
+	 */
+	public String download(){
+		downloadFile = templateService.getInputStreamById(model);
+		
+		Template template = templateService.getById(model);
+		
+		String agent = ServletActionContext.getRequest().getHeader("user-agent");
+		try {
+			fileName = encodeDownloadFilename(template.getName() + ".doc", agent);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "download";
+	}
+
+	/**
+	 * 下载文件时，针对不同浏览器，进行附件名的编码
+	 * @param filename  下载文件名
+	 * @param agent  客户端浏览器(通过request.getHeader("user-agent")获得)
+	 * @return 编码后的下载附件名
+	 * @throws IOException
+	 */
+	public String encodeDownloadFilename(String filename, String agent)
+			throws IOException {
+		if (agent.contains("Firefox")) { // 火狐浏览器
+			filename = "=?UTF-8?B?"
+					+ new BASE64Encoder().encode(filename.getBytes("utf-8"))
+					+ "?=";
+		} else { // IE及其他浏览器
+			filename = URLEncoder.encode(filename, "utf-8");
+		}
+		return filename;
+	}
 
 	public File getResource() {
 		return resource;
@@ -173,7 +204,16 @@ public class TemplateAction extends BaseAction<Template> {
 	public void setDownloadFile(InputStream downloadFile) {
 		this.downloadFile = downloadFile;
 	}
-	
-	
 
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	
 }

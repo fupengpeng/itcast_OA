@@ -1,5 +1,8 @@
 package cn.itcast.oa.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * 
@@ -16,6 +19,8 @@ public class Template {
 	private String name;  //模板名称 
 	private String processDefinitionKey;  //此模板关联的流程定义的key
 	private String filePath;  //此模板对应的文件的存储路径
+//	private Set<Application> applications = new HashSet<Application>();    //申请模板对应的申请
+	
 	public Long getId() {
 		return id;
 	}
@@ -40,8 +45,5 @@ public class Template {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	
-	
-	
 	
 }
