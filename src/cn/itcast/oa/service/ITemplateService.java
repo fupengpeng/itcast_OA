@@ -29,5 +29,8 @@ public interface ITemplateService {
 
 	public InputStream getInputStreamById(Template model);
 
+	public Template getById(Long templateId);
+
+
 
 }

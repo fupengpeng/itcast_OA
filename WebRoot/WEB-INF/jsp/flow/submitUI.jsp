@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <title>提交申请</title>
-    <%@include file="/WEB-INF/jsp/public/header.jsp"%>
+	<%@include file="/WEB-INF/jsp/public/header.jsp" %>
 </head>
 <body>
  
@@ -26,7 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <s:form action="flow_submit" namespace="/" method="{1}" enctype="multipart/form-data">
+    <s:form action="flow_submit" namespace="/" method="post" enctype="multipart/form-data">
+    	<s:hidden name="templateId"></s:hidden>
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 下载文档模板 </div> 
         </div>
@@ -34,13 +35,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 					<tr>
-						<td><s:a action="template_download?id=%{templateId}" namespace="/" cssClass="text-decoration: underline">[点击下载文档模板文件]</s:a></td>
+						<td><s:a namespace="/" action="template_download?id=%{templateId}" cssStyle="text-decoration: underline">[点击下载文档模板文件]</s:a></td>
 					</tr>
                 </table>
             </div>
         </div>
 		
-		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
+		<div class="ItemBlock_Title1">
+		<!-- 信息说明 -->
+		<div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 申请信息 </div> 
         </div>
         <div class="ItemBlockBorder">

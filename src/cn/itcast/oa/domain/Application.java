@@ -16,9 +16,9 @@ import java.util.Set;
  */
 public class Application {
 	
-	private static final String STATUS_RUNNING = "审批中";
-	private static final String STATUS_APPROVED = "已通过";
-	private static final String STATUS_UNAPPROVED = "未通过";
+	public static final String STATUS_RUNNING = "审批中";
+	public static final String STATUS_APPROVED = "已通过";
+	public static final String STATUS_UNAPPROVED = "未通过";
 	
 	private Long id;
 	private String title;    //申请标题

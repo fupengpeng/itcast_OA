@@ -87,6 +87,11 @@ public class TemplateServiceImpl implements ITemplateService{
 		
 		return in;
 	}
-	
+
+	public Template getById(Long templateId) {
+		return templateDao.getById(templateId);
+	}
+
+
 
 }

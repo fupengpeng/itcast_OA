@@ -1,5 +1,7 @@
 package cn.itcast.oa.service;
 
+import cn.itcast.oa.domain.Application;
+
 
 /**
  * 
@@ -11,6 +13,8 @@ package cn.itcast.oa.service;
  * @date 2017年11月21日 上午11:11:23
  */
 public interface IFlowService {
+
+	public void submit(Application app);
 	
 	
 }
