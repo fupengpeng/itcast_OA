@@ -196,7 +196,7 @@ public class TemplateAction extends BaseAction<Template> {
 	public void setResource(File resource) {
 		this.resource = resource;
 	}
-
+	
 	public InputStream getDownloadFile() {
 		return downloadFile;
 	}
@@ -204,7 +204,6 @@ public class TemplateAction extends BaseAction<Template> {
 	public void setDownloadFile(InputStream downloadFile) {
 		this.downloadFile = downloadFile;
 	}
-
 
 	public String getFileName() {
 		return fileName;
