@@ -62,6 +62,8 @@ public class FlowAction extends ActionSupport {
 	private InputStream inputStream; // 用于文件下载的输入流
 	private String fileName; // 下载用的文件名
 	private String taskId; // 任务id
+	private Boolean approval; // 审批是否通过
+	private String comment; // 审批意见
 	
 
 	/**
@@ -215,6 +217,16 @@ public class FlowAction extends ActionSupport {
 	 * String
 	 */
 	public String approveUI() {
+		//保存一个审批实体
+		ApproveInfo ai = new ApproveInfo();
+		Application application = applicationService.getById(applicationId);
+		ai.setApplication(application); // 设置当前审批关联的审批
+		ai.setApproval(approval); // 是否通过
+		ai.setApprover(getCurrentUser()); // 审批人
+		ai.setApproveTime(new Date()); // 审批时间
+		ai.setComment(getComment()); // 审批意见
+		System.out.println("ai = " + ai + "    taskId = " + taskId);
+		flowService.approve(ai,taskId);
 		
 		return "approveUI";
 	}
@@ -352,6 +364,22 @@ public class FlowAction extends ActionSupport {
 
 	public void setTaskId(String taskId) {
 		this.taskId = taskId;
+	}
+
+	public Boolean getApproval() {
+		return approval;
+	}
+
+	public void setApproval(Boolean approval) {
+		this.approval = approval;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	

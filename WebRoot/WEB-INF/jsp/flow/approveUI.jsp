@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<title>审批处理</title>
     <%@include file="/WEB-INF/jsp/public/header.jsp"%>
    
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 	
 		// 是否需要选择下一步
 		// 如果当前节点中只有一个Transition，则不需要选择，此值为false
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 
 		function selectToNode(){ myShowModalDialog("selectToNodeUI.html", 500, 500); }
-	</script>
+	</script> -->
 </head>
 <body>
 
@@ -52,6 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <s:form action="flow_approve" namespace="/" method="post">
 		<s:hidden name="applicationId"></s:hidden>
 		<s:hidden name="taskId"></s:hidden>
+		<input type="hidden" id="approval" name="approval" value="true"/>
 		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 申请信息 </div> 
         </div>
@@ -87,8 +88,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="InputDetailBar" style="float:none">
 			<!--onclick事件在submit之前触发-->
 			<input type="image" src="${pageContext.request.contextPath}/style/blue/images/button/agree.png"/>
-			<input type="image" src="${pageContext.request.contextPath}/style/blue/images/button/disagree.png"/>
-            <!-- <img src="${pageContext.request.contextPath}/style/blue/images/button/sendBack.png" onClick="selectToNode();" /> -->
+			<input onclick="document.getElementById('approval').value='false'" type="image" src="${pageContext.request.contextPath}/style/blue/images/button/disagree.png"/>
+            
             <a href="javascript:history.go(-1);"><img src="${pageContext.request.contextPath}/style/images/goBack.png"/></a>
         </div>
 		

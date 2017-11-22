@@ -28,30 +28,6 @@
 		</div>
 	</div>
 
-	<!--
-<div id="QueryArea">
-	<div style="height: 30px">
-		<form action="#">
-		<table border=0 cellspacing=3 cellpadding=5>
-			<tr>
-				<td>按条件查询：</td>
-				<td><select name="arg1" class="SelectStyle">
-						<option value="">查看全部模板</option>
-						<option value="0">领款单</option>
-						<option value="10">工作报告</option>
-						<option value="13">设备采购单</option>
-						<option value="21">员工请假单</option>
-						<option value="22">加班申请</option>
-					</select>
-				</td>
-				<td><a href=""><input type="IMAGE" src="${pageContext.request.contextPath}/style/blue/images/button/query.PNG"/></a></td>
-			</tr>
-		</table>
-	
-		</form>
-	</div>
-</div>
--->
 	<form>
 		<input type="hidden" name="pageNum" value="1" />
 	</form>
@@ -75,7 +51,7 @@
 						<td>${application.applicant.name}&nbsp;</td>
 						<td>${application.applyTime}&nbsp;</td>
 						<td>
-						    <s:a action="flow_approveUI?taskId=%{task.id}&application=%{application.id}" namespace="/">审批处理</s:a> 
+						    <s:a action="flow_approveUI?taskId=%{task.id}&applicationId=%{application.id}" namespace="/">审批处理</s:a> 
 							<s:a action="flow_historyApprovedList?applicationId=%{application.id}" namespace="/">查看流转记录</s:a></td>
 					</tr>
 				</s:iterator>
