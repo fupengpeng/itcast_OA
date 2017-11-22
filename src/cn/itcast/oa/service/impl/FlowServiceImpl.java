@@ -1,9 +1,11 @@
 package cn.itcast.oa.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -17,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.oa.dao.IApplicationDao;
 import cn.itcast.oa.domain.Application;
+import cn.itcast.oa.domain.TaskView;
 import cn.itcast.oa.domain.Template;
+import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IFlowService;
 
 /**
@@ -61,6 +65,26 @@ public class FlowServiceImpl implements IFlowService {
 		System.out.println("taskId = " + taskId);
 		processEngine.getTaskService().completeTask(taskId);
 
+	}
+
+	/**
+	 * 查询我的任务列表
+	 */
+	public List<TaskView> findTaskList(User currentUser) {
+		//根据登录用户名查询对应的任务列表
+		List<Task> taskList = processEngine.getTaskService().findPersonalTasks(currentUser.getLoginName());
+		
+		//从流程变量中获取对应的申请Application实体
+		List<TaskView> list = new ArrayList<TaskView>();
+		for (Task task : taskList) {
+			//遍历任务列表
+			Application application = (Application) processEngine.getTaskService().getVariable(task.getId(), "application");
+			TaskView tv = new TaskView(application,task);
+			list.add(tv);
+		}
+		
+		
+		return list;
 	}
 
 }

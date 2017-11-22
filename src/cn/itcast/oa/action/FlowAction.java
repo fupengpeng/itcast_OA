@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ import sun.misc.BASE64Encoder;
 import cn.itcast.oa.domain.Application;
 import cn.itcast.oa.domain.ApproveInfo;
 import cn.itcast.oa.domain.PageBean;
+import cn.itcast.oa.domain.TaskView;
 import cn.itcast.oa.domain.Template;
 import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IApplicationService;
@@ -59,13 +61,15 @@ public class FlowAction extends ActionSupport {
 	private Long applicationId; // 属性驱动，申请id 
 	private InputStream inputStream; // 用于文件下载的输入流
 	private String fileName; // 下载用的文件名
+	private String taskId; // 任务id
 	
 
 	/**
 	 * 
-	 * @Title: templateList
 	 * @Description: 起草申请(模板列表)
-	 * @return String
+	 * @Title: templateList 
+	 * @return
+	 * String
 	 */
 	public String templateList() {
 		List<Template> list = templateService.findAll();
@@ -75,9 +79,10 @@ public class FlowAction extends ActionSupport {
 
 	/**
 	 * 
-	 * @Title: submitUI
 	 * @Description: 跳转到提交申请页面
-	 * @return String
+	 * @Title: submitUI 
+	 * @return
+	 * String
 	 */
 	public String submitUI() {
 		return "submitUI";
@@ -85,9 +90,10 @@ public class FlowAction extends ActionSupport {
 
 	/**
 	 * 
-	 * @Title: submit
 	 * @Description: 提交申请
-	 * @return String
+	 * @Title: submit 
+	 * @return
+	 * String
 	 */
 	public String submit() {
 		// 处理上传文件
@@ -114,9 +120,10 @@ public class FlowAction extends ActionSupport {
 
 	/**
 	 * 
-	 * @Title: myApplicationList
 	 * @Description: 我的申请查询列表
-	 * @return String
+	 * @Title: myApplicationList 
+	 * @return
+	 * String
 	 */
 	public String myApplicationList() {
 		//准备数据：模板列表
@@ -188,31 +195,36 @@ public class FlowAction extends ActionSupport {
 
 	/**
 	 * 
-	 * @Title: myTaskList
 	 * @Description: 待我审批(我的任务列表)
-	 * @return String
+	 * @Title: myTaskList 
+	 * @return
+	 * String
 	 */
 	public String myTaskList() {
-
+		List<TaskView> list = flowService.findTaskList(getCurrentUser());
+		ActionContext.getContext().getValueStack().set("list", list);
+		
 		return "myTaskList";
 	}
 
 	/**
 	 * 
-	 * @Title: approveUI
 	 * @Description: 跳转到审批页面
-	 * @return String
+	 * @Title: approveUI 
+	 * @return
+	 * String
 	 */
 	public String approveUI() {
-
+		
 		return "approveUI";
 	}
 
 	/**
 	 * 
-	 * @Title: approve
 	 * @Description: 审批处理
-	 * @return String
+	 * @Title: approve 
+	 * @return
+	 * String
 	 */
 	public String approve() {
 
@@ -221,9 +233,10 @@ public class FlowAction extends ActionSupport {
 
 	/**
 	 * 
-	 * @Title: getCurrentUser
 	 * @Description: 获取当前登录用户
-	 * @return User
+	 * @Title: getCurrentUser 
+	 * @return
+	 * User
 	 */
 	public User getCurrentUser() {
 		return (User) ServletActionContext.getRequest().getSession()
@@ -232,10 +245,11 @@ public class FlowAction extends ActionSupport {
 
 	/**
 	 * 
-	 * @Title: uploadFile
 	 * @Description: 文件上传
+	 * @Title: uploadFile 
 	 * @param file
-	 * @return String
+	 * @return
+	 * String
 	 */
 	private String uploadFile(File file) {
 		// 将上传的文件保存到uploadFiles目录中
@@ -330,6 +344,14 @@ public class FlowAction extends ActionSupport {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public String getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
 	}
 	
 	

@@ -1,6 +1,10 @@
 package cn.itcast.oa.service;
 
+import java.util.List;
+
 import cn.itcast.oa.domain.Application;
+import cn.itcast.oa.domain.TaskView;
+import cn.itcast.oa.domain.User;
 
 
 /**
@@ -15,6 +19,8 @@ import cn.itcast.oa.domain.Application;
 public interface IFlowService {
 
 	public void submit(Application app);
+
+	public List<TaskView> findTaskList(User currentUser);
 	
 	
 }

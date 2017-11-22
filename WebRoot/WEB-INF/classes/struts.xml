@@ -153,8 +153,10 @@
     	        <param name="actionName">flow_myApplicationList</param>
     			<param name="namespace">/</param>
     	    </result>
+    	    <!-- 3.Action中返回historyApprovedList，在此配置中寻找historyApprovedList对应的jsp页面，进行跳转 -->
     	    <result name="historyApprovedList">/WEB-INF/jsp/flow/historyApprovedList.jsp</result>
-    	    
+    	    <result name="myTaskList">/WEB-INF/jsp/flow/myTaskList.jsp</result>
+    	    <result name="approveUI">/WEB-INF/jsp/flow/approveUI.jsp</result>
     	</action>
     	
     </package>
