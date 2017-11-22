@@ -144,7 +144,16 @@
     	<action name="flow_*" class="flowAction" method="{1}">
     	    <result name="templateList">/WEB-INF/jsp/flow/templateList.jsp</result>
     	    <result name="submitUI">/WEB-INF/jsp/flow/submitUI.jsp</result>
-    	    <result name="ToMyApplicationList">/WEB-INF/jsp/flow/submitUI.jsp</result>
+    	    <result name="myApplicationList">/WEB-INF/jsp/flow/myApplicationList.jsp</result>
+    	    <result name="download" type="stream">
+    	        <param name="inputName">inputStream</param>
+    			<param name="contentDisposition">attachment;filename="${fileName}"</param>
+    	    </result>
+    	    <result name="toMyApplicationList" type="redirectAction">
+    	        <param name="actionName">flow_myApplicationList</param>
+    			<param name="namespace">/</param>
+    	    </result>
+    	    
     	</action>
     	
     </package>

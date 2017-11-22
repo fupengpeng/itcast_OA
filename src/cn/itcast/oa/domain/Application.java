@@ -77,5 +77,14 @@ public class Application {
 	public void setApproveInfos(Set<ApproveInfo> approveInfos) {
 		this.approveInfos = approveInfos;
 	}
+	@Override
+	public String toString() {
+		return "Application [id=" + id + ", title=" + title + ", applicant="
+				+ applicant + ", applyTime=" + applyTime + ", status=" + status
+				+ ", filePath=" + filePath + ", template=" + template
+				+ ", approveInfos=" + approveInfos + "]";
+	}
+	
+	
 	
 }

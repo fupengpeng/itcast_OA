@@ -58,6 +58,7 @@ public class FlowServiceImpl implements IFlowService {
 		query.processInstanceId(pi.getId()); // 获取当前流程实例下唯一的一个任务
 		Task task = query.uniqueResult();
 		String taskId = task.getId();
+		System.out.println("taskId = " + taskId);
 		processEngine.getTaskService().completeTask(taskId);
 
 	}
