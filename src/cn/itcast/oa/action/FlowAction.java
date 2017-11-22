@@ -17,10 +17,12 @@ import org.springframework.stereotype.Controller;
 
 import sun.misc.BASE64Encoder;
 import cn.itcast.oa.domain.Application;
+import cn.itcast.oa.domain.ApproveInfo;
 import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.Template;
 import cn.itcast.oa.domain.User;
 import cn.itcast.oa.service.IApplicationService;
+import cn.itcast.oa.service.IApproveInfoService;
 import cn.itcast.oa.service.IFlowService;
 import cn.itcast.oa.service.ITemplateService;
 import cn.itcast.oa.utils.HQLHelper;
@@ -47,6 +49,8 @@ public class FlowAction extends ActionSupport {
 	private IFlowService flowService;
 	@Resource
 	private IApplicationService applicationService;
+	@Resource
+	private IApproveInfoService approveInfoService;
 
 	private Long templateId; // 属性驱动，模板id
 	private File resource; // 用于文件上传
@@ -175,7 +179,8 @@ public class FlowAction extends ActionSupport {
 	 */
 	public String historyApprovedList() {
 		// 2.根据申请的id查询对应的审批列表
-		
+		List<ApproveInfo> list = approveInfoService.findApproveInfoListByApplicationId(applicationId);
+		ActionContext.getContext().getValueStack().set("list", list);
 		
 		
 		return "historyApprovedList";

@@ -153,6 +153,7 @@
     	        <param name="actionName">flow_myApplicationList</param>
     			<param name="namespace">/</param>
     	    </result>
+    	    <result name="historyApprovedList">/WEB-INF/jsp/flow/historyApprovedList.jsp</result>
     	    
     	</action>
     	
