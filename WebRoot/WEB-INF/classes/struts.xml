@@ -157,6 +157,10 @@
     	    <result name="historyApprovedList">/WEB-INF/jsp/flow/historyApprovedList.jsp</result>
     	    <result name="myTaskList">/WEB-INF/jsp/flow/myTaskList.jsp</result>
     	    <result name="approveUI">/WEB-INF/jsp/flow/approveUI.jsp</result>
+    	    <result name="toMyTaskList" type="redirectAction">
+    	        <param name="actionName">flow_myTaskList</param>
+    			<param name="namespace">/</param>
+    	    </result>
     	</action>
     	
     </package>

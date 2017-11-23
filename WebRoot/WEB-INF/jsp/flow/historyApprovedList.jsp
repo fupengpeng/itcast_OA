@@ -29,7 +29,6 @@
 	</div>
 
 	<div id="MainArea">
-
 		<table cellspacing="0" cellpadding="0" class="TableStyle">
 			<!-- 表头-->
 			<tr align="CENTER" valign="MIDDLE" id="TableTitle">
@@ -55,10 +54,13 @@
 				<!-- 其他功能超链接 -->
 				<div id="TableTail">
 					<div id="TableTail_inside">
-						<a href="javascript:history.go(-1);"><img
-							src="${pageContext.request.contextPath}/style/images/goBack.png" /></a>
+						<a href="javascript:history.go(-1);">
+						<img src="${pageContext.request.contextPath}/style/images/goBack.png" /></a>
 					</div>
 				</div>
+	
+	       </tbody>
+	    </table>
 	</div>
 
 	<div class="Description">

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import sun.misc.BASE64Encoder;
 import cn.itcast.oa.domain.Application;
 import cn.itcast.oa.domain.ApproveInfo;
+import cn.itcast.oa.domain.Forum;
 import cn.itcast.oa.domain.PageBean;
 import cn.itcast.oa.domain.TaskView;
 import cn.itcast.oa.domain.Template;
@@ -58,20 +59,18 @@ public class FlowAction extends ActionSupport {
 	private File resource; // 用于文件上传
 	private String status; // 申请状态
 	private int currentPage = 1; // 当前页码
-	private Long applicationId; // 属性驱动，申请id 
+	private Long applicationId; // 属性驱动，申请id
 	private InputStream inputStream; // 用于文件下载的输入流
 	private String fileName; // 下载用的文件名
 	private String taskId; // 任务id
 	private Boolean approval; // 审批是否通过
 	private String comment; // 审批意见
-	
 
 	/**
 	 * 
 	 * @Description: 起草申请(模板列表)
-	 * @Title: templateList 
-	 * @return
-	 * String
+	 * @Title: templateList
+	 * @return String
 	 */
 	public String templateList() {
 		List<Template> list = templateService.findAll();
@@ -82,9 +81,8 @@ public class FlowAction extends ActionSupport {
 	/**
 	 * 
 	 * @Description: 跳转到提交申请页面
-	 * @Title: submitUI 
-	 * @return
-	 * String
+	 * @Title: submitUI
+	 * @return String
 	 */
 	public String submitUI() {
 		return "submitUI";
@@ -93,9 +91,8 @@ public class FlowAction extends ActionSupport {
 	/**
 	 * 
 	 * @Description: 提交申请
-	 * @Title: submit 
-	 * @return
-	 * String
+	 * @Title: submit
+	 * @return String
 	 */
 	public String submit() {
 		// 处理上传文件
@@ -113,7 +110,7 @@ public class FlowAction extends ActionSupport {
 		app.setFilePath(filePath); // 文件存储路径
 		app.setTemplate(template); // 使用的申请模板
 		app.setApplicant(getCurrentUser()); // 申请人
-		
+
 		System.out.println("app = " + app.toString());
 		flowService.submit(app);
 
@@ -123,101 +120,108 @@ public class FlowAction extends ActionSupport {
 	/**
 	 * 
 	 * @Description: 我的申请查询列表
-	 * @Title: myApplicationList 
-	 * @return
-	 * String
+	 * @Title: myApplicationList
+	 * @return String
 	 */
 	public String myApplicationList() {
-		//准备数据：模板列表
+		// 准备数据：模板列表
 		List<Template> list = templateService.findAll();
 		ActionContext.getContext().getValueStack().set("templateList", list);
-		
-		//查询分页数据：我的申请
+
+		// 查询分页数据：我的申请
 		HQLHelper hh = new HQLHelper(Application.class);
-		
-		//查询当前登录人的申请记录
+
+		// 查询当前登录人的申请记录
 		hh.addWhere(" o.applicant = ? ", getCurrentUser());
-		
+
 		if (templateId != null) {
-			//按照模板检索
+			// 按照模板检索
 			hh.addWhere(" o.template.id = ? ", templateId);
 		}
 		if (status != null && status.trim().length() > 0) {
-			//按照申请状态检索
+			// 按照申请状态检索
 			hh.addWhere(" o.status = ? ", status);
 		}
-		
-		//添加排序--按照申请时间降序
+
+		// 添加排序--按照申请时间降序
 		hh.addOrderBy(" o.applyTime ", false);
-		
-		PageBean pb = applicationService.getPageBean(hh,currentPage);
+
+		PageBean pb = applicationService.getPageBean(hh, currentPage);
 		ActionContext.getContext().getValueStack().push(pb);
-		
+
 		return "myApplicationList";
 	}
 
 	/**
 	 * 
 	 * @Description: 查看申请信息(下载申请文件)
-	 * @Title: download 
-	 * @return
-	 * String
+	 * @Title: download
+	 * @return String
 	 */
 	public String download() {
 		inputStream = applicationService.getInputStreamById(applicationId);
 		Application app = applicationService.getById(applicationId);
 		fileName = app.getTitle() + ".doc";
-		String agent = ServletActionContext.getRequest().getHeader("user-agent");
+		String agent = ServletActionContext.getRequest()
+				.getHeader("user-agent");
 		try {
 			fileName = this.encodeDownloadFilename(fileName, agent);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return "download";
 	}
 
 	/**
 	 * 
 	 * @Description: 查看流转记录(审批信息)
-	 * @Title: historyApprovedList 
-	 * @return
-	 * String
+	 * @Title: historyApprovedList
+	 * @return String
 	 */
 	public String historyApprovedList() {
 		// 2.根据申请的id查询对应的审批列表
-		List<ApproveInfo> list = approveInfoService.findApproveInfoListByApplicationId(applicationId);
+		List<ApproveInfo> list = approveInfoService
+				.findApproveInfoListByApplicationId(applicationId);
 		ActionContext.getContext().getValueStack().set("list", list);
-		
-		
+
 		return "historyApprovedList";
 	}
 
 	/**
 	 * 
 	 * @Description: 待我审批(我的任务列表)
-	 * @Title: myTaskList 
-	 * @return
-	 * String
+	 * @Title: myTaskList
+	 * @return String
 	 */
 	public String myTaskList() {
 		List<TaskView> list = flowService.findTaskList(getCurrentUser());
 		ActionContext.getContext().getValueStack().set("list", list);
 		
+
 		return "myTaskList";
 	}
 
 	/**
 	 * 
 	 * @Description: 跳转到审批页面
-	 * @Title: approveUI 
-	 * @return
-	 * String
+	 * @Title: approveUI
+	 * @return String
 	 */
 	public String approveUI() {
-		//保存一个审批实体
+
+		return "approveUI";
+	}
+
+	/**
+	 * 
+	 * @Description: 审批处理
+	 * @Title: approve
+	 * @return String
+	 */
+	public String approve() {
+		// 保存一个审批实体
 		ApproveInfo ai = new ApproveInfo();
 		Application application = applicationService.getById(applicationId);
 		ai.setApplication(application); // 设置当前审批关联的审批
@@ -226,29 +230,15 @@ public class FlowAction extends ActionSupport {
 		ai.setApproveTime(new Date()); // 审批时间
 		ai.setComment(getComment()); // 审批意见
 		System.out.println("ai = " + ai + "    taskId = " + taskId);
-		flowService.approve(ai,taskId);
-		
-		return "approveUI";
-	}
-
-	/**
-	 * 
-	 * @Description: 审批处理
-	 * @Title: approve 
-	 * @return
-	 * String
-	 */
-	public String approve() {
-
+		flowService.approve(ai, taskId);
 		return "toMyTaskList";
 	}
 
 	/**
 	 * 
 	 * @Description: 获取当前登录用户
-	 * @Title: getCurrentUser 
-	 * @return
-	 * User
+	 * @Title: getCurrentUser
+	 * @return User
 	 */
 	public User getCurrentUser() {
 		return (User) ServletActionContext.getRequest().getSession()
@@ -258,10 +248,9 @@ public class FlowAction extends ActionSupport {
 	/**
 	 * 
 	 * @Description: 文件上传
-	 * @Title: uploadFile 
+	 * @Title: uploadFile
 	 * @param file
-	 * @return
-	 * String
+	 * @return String
 	 */
 	private String uploadFile(File file) {
 		// 将上传的文件保存到uploadFiles目录中
@@ -276,15 +265,18 @@ public class FlowAction extends ActionSupport {
 		}
 		String filePath = dateStr + UUID.randomUUID().toString() + ".doc";
 		File dest = new File(filePath);
-//		resource.renameTo(dest);
+		// resource.renameTo(dest);
 		file.renameTo(dest);
 		return filePath;
 	}
 
 	/**
 	 * 下载文件时，针对不同浏览器，进行附件名的编码
-	 * @param filename  下载文件名
-	 * @param agent  客户端浏览器(通过request.getHeader("user-agent")获得)
+	 * 
+	 * @param filename
+	 *            下载文件名
+	 * @param agent
+	 *            客户端浏览器(通过request.getHeader("user-agent")获得)
 	 * @return 编码后的下载附件名
 	 * @throws IOException
 	 */
@@ -299,9 +291,7 @@ public class FlowAction extends ActionSupport {
 		}
 		return filename;
 	}
-	
-	
-	
+
 	public Long getTemplateId() {
 		return templateId;
 	}
@@ -381,11 +371,5 @@ public class FlowAction extends ActionSupport {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	
-	
-	
 
-
-	
-	
 }

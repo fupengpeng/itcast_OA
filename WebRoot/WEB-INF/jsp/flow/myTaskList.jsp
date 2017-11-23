@@ -64,14 +64,15 @@
 		</div>
 	</div>
 
-	<!--分页信息-->
+	<%-- <!--分页信息-->
+	<!-- 1.包含分页信息 -->
+	<%@include file="/WEB-INF/jsp/public/pageView.jsp"%>
+	<!-- 2.提供一个分页用的表单 -->
+	<s:form id="pageForm" action="myTaskList" namespace="/"></s:form> --%>
 	<div id=PageSelectorBar>
 		<div id=PageSelectorMemo>页次：7/13页 &nbsp; 每页显示：30条 &nbsp;
 			总记录数：385条</div>
 		<div id=PageSelectorSelectorArea>
-			<!--
-		<IMG SRC="${pageContext.request.contextPath}/style/blue/images/pageSelector/firstPage2.png"/>
-		-->
 			<a href="javascript:void(0)" title="首页" style="cursor: hand;"> <img
 				src="${pageContext.request.contextPath}/style/blue/images/pageSelector/firstPage.png" /></a>
 			<span class="PageSelectorNum" style="cursor: hand;"
@@ -90,9 +91,6 @@
 				class="PageSelectorNum" style="cursor: hand;"
 				onClick="gotoPageNum(2);">12</span>
 
-			<!--
-		<IMG SRC="${pageContext.request.contextPath}/style/blue/images/pageSelector/lastPage2.png"/>
-		-->
 			<a href="#" title="尾页" style="cursor: hand;"><img
 				src="${pageContext.request.contextPath}/style/blue/images/pageSelector/lastPage.png" /></a>
 			转到： <input onFocus="this.select();" maxlength="2" class="inputStyle"

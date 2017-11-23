@@ -10,29 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<title>审批处理</title>
     <%@include file="/WEB-INF/jsp/public/header.jsp"%>
-   
-    <!-- <script type="text/javascript">
-	
-		// 是否需要选择下一步
-		// 如果当前节点中只有一个Transition，则不需要选择，此值为false
-		// 如果当前节点中有多个Transition，则需要选择，此值为true
-		var needSelectTransition = false; // ${needSelectTransition}
-		
-		/**
-		 * 选择下一步
-		 */
-		// 在表单的提交按钮的onclick事件上定代码：showModalDialog()，则会在提交前打开模态对话框，并在对话框关闭后再继续提交表单。
-		// 在这里有一个要求，如果在"选择Transition"页面中点击了“关闭”，则不提交表单。
-    	function selectTransition(){
-			if(needSelectTransition){
-				myShowModalDialog("selectTransitionUI.html", 500, 500);
-				return false;
-			}
-			return true;
-		}
-
-		function selectToNode(){ myShowModalDialog("selectToNodeUI.html", 500, 500); }
-	</script> -->
 </head>
 <body>
 

@@ -130,11 +130,10 @@ public class FlowServiceImpl implements IFlowService {
 			if (pi != null) {
 				//流程还没有结束，需要手动结束
 				processEngine.getExecutionService().endProcessInstance(executionId, ProcessInstance.STATE_ENDED);
-				//4.修改申请状态
-				//申请状态改为"未通过"
-				ai.getApplication().setStatus(Application.STATUS_UNAPPROVED);
-				
 			}
+			//4.修改申请状态
+			//申请状态改为"未通过"
+			ai.getApplication().setStatus(Application.STATUS_UNAPPROVED);
 		}
 		
 	}

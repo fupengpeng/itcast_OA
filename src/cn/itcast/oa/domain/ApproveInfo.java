@@ -57,13 +57,7 @@ public class ApproveInfo {
 	public void setApplication(Application application) {
 		this.application = application;
 	}
-	@Override
-	public String toString() {
-		return "ApproveInfo [id=" + id + ", approver=" + approver
-				+ ", approveTime=" + approveTime + ", approval=" + approval
-				+ ", comment=" + comment + ", application=" + application + "]";
-	}
-	
+
 	
 	
 }
