@@ -73,7 +73,10 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	/**
-	 * 公共分页方法
+	 * @Description: 公共分页方法
+	 * @Title: getPageBean 
+	 * @return
+	 * PageBean
 	 */
 	public PageBean getPageBean(HQLHelper hh, int currentPage) {
 		int pageSize = getPageSize();
@@ -106,8 +109,10 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	/**
-	 * 读取配置文件，获取pageSize
+	 * @Description: 读取配置文件，获取pageSize(每页显示几条数据)
+	 * @Title: getPageSize 
 	 * @return
+	 * int
 	 */
 	private int getPageSize() {
 		int pageSize = 10;

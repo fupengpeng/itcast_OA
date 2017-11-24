@@ -35,6 +35,11 @@ public class TaskView {
 	public void setTask(Task task) {
 		this.task = task;
 	}
+	@Override
+	public String toString() {
+		return "TaskView [application=" + application + ", task=" + task + "]";
+	}
+	
 	
 	
 	

@@ -117,6 +117,13 @@ public class PageBean {
 	public void setEndPageIndex(int endPageIndex) {
 		this.endPageIndex = endPageIndex;
 	}
+
+	@Override
+	public String toString() {
+		return "PageBean [recordList=" + recordList + "]";
+	}
+
+	
 	
 	
 	

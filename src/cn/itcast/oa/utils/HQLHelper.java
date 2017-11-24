@@ -78,7 +78,9 @@ public class HQLHelper {
 	 * @return
 	 */
 	public String getListHQL(){
-		return this.fromStr + this.whereStr + this.orderByStr;
+		String hql = this.fromStr + this.whereStr + this.orderByStr;
+		System.out.println("---------hql = " + hql);
+		return hql;
 	}
 	
 	/**

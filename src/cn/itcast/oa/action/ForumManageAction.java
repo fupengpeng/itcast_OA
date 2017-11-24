@@ -1,6 +1,5 @@
 package cn.itcast.oa.action;
 
-import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,6 +29,7 @@ public class ForumManageAction extends BaseAction<Forum> {
 	public String list(){
 //		List<Forum> list = forumManageService.findAll();
 //		getValueStack().set("list", list);
+		//分页03
 		HQLHelper hh = new HQLHelper(Forum.class);
 		hh.addOrderBy(" o.position", true);
 		PageBean pb = forumManageService.getPageBean(hh,currentPage);

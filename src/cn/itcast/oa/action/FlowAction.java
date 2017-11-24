@@ -8,11 +8,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -199,6 +202,14 @@ public class FlowAction extends ActionSupport {
 		List<TaskView> list = flowService.findTaskList(getCurrentUser());
 		ActionContext.getContext().getValueStack().set("list", list);
 		
+		HQLHelper hh = new HQLHelper(Forum.class);
+		hh.addOrderBy(" o.position", true);
+		
+		PageBean pb = this.getPageBean(hh,currentPage);
+		System.out.println("pb = " + pb.toString());
+		ActionContext.getContext().getValueStack().push(pb);
+		
+		
 
 		return "myTaskList";
 	}
@@ -268,6 +279,75 @@ public class FlowAction extends ActionSupport {
 		// resource.renameTo(dest);
 		file.renameTo(dest);
 		return filePath;
+	}
+	
+	/**
+	 * 
+	 * @Description: 描述
+	 * @Title: getPageBean 
+	 * @param hh  
+	 * @param currentPage  页码
+	 * @return
+	 * PageBean  当前页码对应的数据
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		
+		int pageSize = getPageSize();
+		int firstResult = (currentPage - 1) * pageSize;
+		
+		String listHQL = hh.getListHQL();
+		String countHQL = hh.getCountHQL();
+		List<Object> args = hh.getArgs();
+		SessionFactory sessionFactory = null;
+		Query query = sessionFactory.getCurrentSession().createQuery(listHQL);
+		if (args != null && args.size() > 0) {
+			int index = 0 ;
+			for (Object o : args) {
+				query.setParameter(index++, o);
+			}
+		}
+		query.setFirstResult(firstResult);
+		query.setMaxResults(pageSize);
+		List recordList = query.list();
+		
+		query = sessionFactory.getCurrentSession().createQuery(countHQL);
+		if (args != null && args.size() > 0) {
+			int index = 0 ;
+			for (Object o : args) {
+				query.setParameter(index++, o);
+			}
+		}
+		Long recordCount = (Long) query.uniqueResult();
+		
+		for (Object object : recordList) {
+			System.out.println("object = " + object.toString() );
+		}
+		
+		return new PageBean(currentPage,pageSize,recordCount.intValue(),recordList);
+	}
+	
+	private int getPageSize() {
+		int pageSize = 10;
+		Properties pro = new Properties();
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("page.properties");
+		try {
+			pro.load(in);
+			String str = (String) pro.get("pageSize");
+			pageSize = Integer.parseInt(str);
+		} catch (IOException e) {
+			pageSize = 10;
+			e.printStackTrace();
+		}finally{
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return pageSize;
 	}
 
 	/**
